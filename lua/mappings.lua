@@ -23,7 +23,7 @@ local my_fd = function(opts)
   require('telescope.builtin').find_files(opts)
 end
 
-map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+map({ 'n', 'v' }, '<Space>', '<C-f>', nore_options)
 
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == -8 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -49,6 +49,15 @@ map('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earc
 map('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 map('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 map('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+map('n', '<leader>gs', '<cmd>Git<cr>', { desc = 'Git status' })
+map('n', '<leader>ga', '<cmd>Git add %<cr>', { desc = 'Git add buffer' })
+map('n', '<leader>gA', '<cmd>Git add -A .<cr>', { desc = 'Git add all' })
+map('n', '<leader>gB', '<cmd>GitBlameToggle<cr>', { desc = 'Toggle Blame' })
+map('n', '<leader>gc', '<cmd>Git commit -v<cr>', { desc = 'Git commit' })
+map('n', '<leader>gC', '<cmd>Git commit -a -v<cr>', { desc = 'Git commit -a' })
+map('n', '<leader>gp', '<cmd>Git push -u origin HEAD<cr>', { desc = 'Git push' })
+map('n', '<leader>gu', '<cmd>Git pull<cr>', { desc = 'Git pull' })
 
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })

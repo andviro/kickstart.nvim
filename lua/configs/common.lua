@@ -53,7 +53,7 @@ end
 
 -- if you just want default config for the servers then put them in a table
 M.servers = {
-  clangd = {},
+  bufls = {},
   gopls = {},
   pyright = {},
   rust_analyzer = {},
@@ -64,6 +64,70 @@ M.servers = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
+  },
+  dockerls = {},
+  jsonls = {
+    cmd = { 'vscode-json-language-server', '--stdio' },
+    format = { enabled = false },
+    schemas = {
+      {
+        description = 'ESLint config',
+        fileMatch = { '.eslintrc.json', '.eslintrc' },
+        url = 'http://json.schemastore.org/eslintrc',
+      },
+      {
+        description = 'Package config',
+        fileMatch = { 'package.json' },
+        url = 'https://json.schemastore.org/package',
+      },
+      {
+        description = 'Packer config',
+        fileMatch = { 'packer.json' },
+        url = 'https://json.schemastore.org/packer',
+      },
+      {
+        description = 'Renovate config',
+        fileMatch = {
+          'renovate.json',
+          'renovate.json5',
+          '.github/renovate.json',
+          '.github/renovate.json5',
+          '.renovaterc',
+          '.renovaterc.json',
+        },
+        url = 'https://docs.renovatebot.com/renovate-schema',
+      },
+      {
+        description = 'OpenApi config',
+        fileMatch = { '*api*.json' },
+        url = 'https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json',
+      },
+    },
+  },
+  yamlls = {
+    schemaStore = {
+      enable = true,
+      url = 'https://www.schemastore.org/api/json/catalog.json',
+    },
+    schemas = {
+      kubernetes = '*.yaml',
+      ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
+      ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
+      ['http://json.schemastore.org/ansible-stable-2.9'] = 'roles/tasks/*.{yml,yaml}',
+      ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
+      ['http://json.schemastore.org/kustomization'] = 'kustomization.{yml,yaml}',
+      ['http://json.schemastore.org/ansible-playbook'] = '*play*.{yml,yaml}',
+      ['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
+      ['https://json.schemastore.org/dependabot-v2'] = '.github/dependabot.{yml,yaml}',
+      ['https://json.schemastore.org/gitlab-ci'] = '*gitlab-ci*.{yml,yaml}',
+      ['https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json'] = '*api*.{yml,yaml}',
+      ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = '*docker-compose*.{yml,yaml}',
+      ['https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json'] = '*flow*.{yml,yaml}',
+    },
+    format = { enabled = false },
+    validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml
+    completion = true,
+    hover = true,
   },
 }
 

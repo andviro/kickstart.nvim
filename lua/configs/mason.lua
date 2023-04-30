@@ -3,7 +3,7 @@ local mason_lspconfig = require 'mason-lspconfig'
 local cfg = require 'configs.common'
 
 mason_lspconfig.setup {
-  ensure_installed = cfg.servers,
+  ensure_installed = vim.tbl_keys(cfg.servers),
   max_concurrent_installers = 10,
 }
 

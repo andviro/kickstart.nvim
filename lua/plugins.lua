@@ -37,7 +37,6 @@ require('lazy').setup({
           require 'configs.mason'
         end,
       },
-
       -- Additional lua configuration, makes nvim stuff amazing!
       { 'folke/neodev.nvim', opts = {} },
 
@@ -198,6 +197,20 @@ require('lazy').setup({
       -- setup cmp for autopairs
       local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
       require('cmp').event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end,
+  },
+  {
+    'jay-babu/mason-null-ls.nvim',
+
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+      'williamboman/mason.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
+    },
+    config = function()
+      require('mason-null-ls').setup {
+        automatic_installation = true,
+      }
     end,
   },
 }, {})

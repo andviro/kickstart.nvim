@@ -50,7 +50,7 @@ local sources = {
   b.formatting.stylua.with { '--indent_type', 'Spaces' },
 
   -- cpp
-  b.formatting.clang_format,
+  -- b.formatting.clang_format,
 
   -- proto
   b.diagnostics.buf,
