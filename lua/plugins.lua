@@ -49,10 +49,23 @@ require('lazy').setup({
     end,
   },
 
+  { 'onsails/lspkind-nvim', dependencies = { 'famiu/bufdelete.nvim' } },
+
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'f3fora/cmp-spell',
+      'hrsh7th/cmp-calc',
+      'lukas-reineke/cmp-rg',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+    },
     config = function()
       require 'configs.cmp'
     end,
@@ -107,8 +120,13 @@ require('lazy').setup({
     },
   },
 
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  -- "K" to comment visual regions/lines
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end,
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -145,4 +163,6 @@ require('lazy').setup({
       require 'configs.treesitter'
     end,
   },
+
+  { 'mbbill/undotree' },
 }, {})

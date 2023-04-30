@@ -3,6 +3,8 @@ local M = {}
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+local api = require 'Comment.api'
+local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 M.on_attach = function(_, bufnr)
@@ -13,6 +15,10 @@ M.on_attach = function(_, bufnr)
 
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
+  vim.keymap.set('x', 'K', function()
+    vim.api.nvim_feedkeys(esc, 'nx', false)
+    api.toggle.linewise(vim.fn.visualmode())
+  end)
   nmap('<CR>', '<cmd>lua vim.lsp.buf.definition()<CR>', 'Go to definition')
   nmap('<C-k>', '<cmd>Telescope diagnostics<cr>', 'Telescope diagnostics')
   nmap('K', '<cmd>lua vim.lsp.buf.hover()<CR>', 'Help')
