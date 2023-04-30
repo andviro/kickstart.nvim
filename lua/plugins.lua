@@ -13,19 +13,20 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
+  -- Detect file encoding
+  's3rvac/AutoFenc',
+
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
       {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
           require 'configs.null-ls'
         end,
       },
+      -- Automatically install LSPs to stdpath for neovim
       {
         'williamboman/mason.nvim',
         config = true,
@@ -165,4 +166,38 @@ require('lazy').setup({
   },
 
   { 'mbbill/undotree' },
+
+  {
+    'nvim-tree/nvim-tree.lua',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      git = {
+        enable = true,
+      },
+      renderer = {
+        highlight_git = true,
+        icons = {
+          show = {
+            git = true,
+          },
+        },
+      },
+    },
+  },
+  {
+    'windwp/nvim-autopairs',
+    opts = {
+      fast_wrap = {},
+      disable_filetype = { 'TelescopePrompt', 'vim' },
+    },
+    config = function(_, opts)
+      require('nvim-autopairs').setup(opts)
+
+      -- setup cmp for autopairs
+      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      require('cmp').event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end,
+  },
 }, {})

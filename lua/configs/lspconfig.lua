@@ -5,5 +5,6 @@ for _, lsp in ipairs(vim.tbl_keys(cfg.servers)) do
   lspconfig[lsp].setup {
     on_attach = cfg.on_attach,
     capabilities = cfg.capabilities,
+    settings = cfg.servers[lsp],
   }
 end
