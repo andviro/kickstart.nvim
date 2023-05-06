@@ -44,6 +44,7 @@ map({ 'n' }, '<C-j>', require('telescope.builtin').live_grep, nore_options)
 -- Tab switch buffer
 map('n', '<Tab>', ':b#<CR>', { desc = 'alternate buffer' })
 
+map('n', '<leader>u', '<cmd>UndotreeToggle<cr>', { desc = '[U]ntotree toggle' })
 map('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 map('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 map('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
