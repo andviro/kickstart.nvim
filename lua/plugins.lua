@@ -71,6 +71,15 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'ray-x/go.nvim',
+    dependencies = { 'ray-x/guihua.lua' },
+    config = function()
+      require 'configs.go'
+    end,
+    ft = { 'go' },
+  },
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {
