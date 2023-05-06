@@ -62,9 +62,63 @@ cmp.setup {
   },
 }
 
+local cmd_mappings = {
+  ['<C-n>'] = {
+    c = function()
+      feedkeys.call(keymap.t '<Down>', 'n')
+    end,
+  },
+  ['<C-p>'] = {
+    c = function()
+      feedkeys.call(keymap.t '<Up>', 'n')
+    end,
+  },
+  ['<C-e>'] = {
+    c = function()
+      feedkeys.call(keymap.t '<End>', 'n')
+    end,
+  },
+  ['<C-a>'] = {
+    c = function()
+      feedkeys.call(keymap.t '<Home>', 'n')
+    end,
+  },
+  ['<C-b>'] = {
+    c = function()
+      feedkeys.call(keymap.t '<Left>', 'n')
+    end,
+  },
+  ['<C-f>'] = {
+    c = function()
+      feedkeys.call(keymap.t '<Right>', 'n')
+    end,
+  },
+  ['<C-g>'] = {
+    c = cmp.mapping.close(),
+  },
+  ['<C-j>'] = {
+    c = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end,
+  },
+  ['<C-k>'] = {
+    c = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      else
+        fallback()
+      end
+    end,
+  },
+}
+
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
+  mapping = cmp.mapping.preset.cmdline(cmd_mappings),
   sources = {
     { name = 'buffer' },
   },
@@ -72,41 +126,7 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline {
-    ['<C-n>'] = {
-      c = function()
-        feedkeys.call(keymap.t '<Down>', 'n')
-      end,
-    },
-    ['<C-p>'] = {
-      c = function()
-        feedkeys.call(keymap.t '<Up>', 'n')
-      end,
-    },
-    ['<C-e>'] = {
-      c = function()
-        feedkeys.call(keymap.t '<End>', 'n')
-      end,
-    },
-    ['<C-a>'] = {
-      c = function()
-        feedkeys.call(keymap.t '<Home>', 'n')
-      end,
-    },
-    ['<C-b>'] = {
-      c = function()
-        feedkeys.call(keymap.t '<Left>', 'n')
-      end,
-    },
-    ['<C-f>'] = {
-      c = function()
-        feedkeys.call(keymap.t '<Right>', 'n')
-      end,
-    },
-    ['<C-g>'] = {
-      c = cmp.mapping.close(),
-    },
-  },
+  mapping = cmp.mapping.preset.cmdline(cmd_mappings),
   sources = cmp.config.sources({
     { name = 'path' },
   }, {
