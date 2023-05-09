@@ -19,6 +19,7 @@ o.undodir = fn.stdpath 'data' .. '/undo' -- set undo directory
 o.shadafile = fn.stdpath 'data' .. '/shada/main.shada' -- set shada directory
 o.history = 10000 -- Use the 'history' option to set the number of lines from command mode that are remembered.
 o.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
+o.spell = true
 o.spelllang = { 'ru', 'en' }
 o.keymap = 'russian-yawerty'
 o.iminsert = 0
