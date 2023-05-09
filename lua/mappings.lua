@@ -86,7 +86,7 @@ map('i', '<C-u>', '<c-g>u<c-u>', nore_options)
 map('i', '<C-w>', '<c-g>u<c-w>', nore_options)
 
 -- multi-cursor substitution
-map('n', '<C-n>', '*Ncgn', nore_options)
+-- map('n', '<C-n>', '*Ncgn', nore_options)
 
 -- emacs-like insert mode
 map({ 'c', 'i' }, '<C-A>', '<Home>', nore_options)

@@ -82,3 +82,10 @@ o.wildignore = [[
 *.swp,.lock,.DS_Store,._*
 */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
 ]]
+
+-- vim.g.VM_maps = {}
+-- vim.g.VM_maps['Select All'] = '<M-n>'
+-- vim.g.VM_maps['Visual All'] = '<M-n>'
+-- vim.g.VM_maps['Skip Region'] = '<C-x>'
+-- vim.g.VM_maps['Increase'] = '+'
+-- vim.g.VM_maps['Decrease'] = '-'
