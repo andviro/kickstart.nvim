@@ -17,7 +17,7 @@ api.nvim_create_autocmd('BufWritePre', {
   group = TrimWhiteSpaceGrp,
 })
 
-api.nvim_create_autocmd('BufEnter', { command = [[silent! lcd <afile>:p:h]] })
+-- api.nvim_create_autocmd('BufEnter', { command = [[silent! lcd <afile>:p:h]] })
 
 -- don't auto comment new line
 api.nvim_create_autocmd('BufEnter', { command = [[set formatoptions-=cro]] })

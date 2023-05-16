@@ -9,17 +9,7 @@ local expr_options = { expr = true, silent = true }
 
 local my_fd = function(opts)
   opts = opts or {}
-  opts.cwd = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
-  if vim.v.shell_error ~= 0 then
-    -- if not git then active lsp client root
-    -- will get the configured root directory of the first attached lsp. You will have problems if you are using multiple lsps
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      opts.cwd = client.config.root_dir
-    else
-      opts.cwd = vim.fn.expand '%:p:h'
-    end
-  end
+  opts.cwd = require('configs.common').get_cwd()
   require('telescope.builtin').find_files(opts)
 end
 

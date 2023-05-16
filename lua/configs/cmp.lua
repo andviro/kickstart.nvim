@@ -57,10 +57,13 @@ cmp.setup {
     end, { 'i', 's' }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
-      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-      -- they way you will only jump inside the snippet region
-      elseif luasnip.expand_or_jumpable() then
+        local entry = cmp.get_selected_entry()
+        if not entry then
+          cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+        else
+          cmp.confirm()
+        end
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
@@ -79,16 +82,17 @@ cmp.setup {
       end
     end, { 'i', 's' }),
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'buffer', keyword_length = 5 },
     { name = 'luasnip' },
-    { name = 'calc' },
-    { name = 'spell', keyword_length = 5 },
+  }, {
+    { name = 'buffer', keyword_length = 5 },
     { name = 'path' },
-    { name = 'rg', keyword_length = 5 },
-  },
+    -- { name = 'calc' },
+    -- { name = 'spell', keyword_length = 5 },
+    -- { name = 'rg', keyword_length = 5 },
+  }),
 }
 
 local cmd_mappings = {

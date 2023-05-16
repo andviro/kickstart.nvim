@@ -34,6 +34,7 @@ o.showtabline = 1 -- show tabs
 o.laststatus = 3
 o.showmode = true
 o.autoread = true
+o.autochdir = true
 o.autoindent = true
 o.formatoptions = 'jcroql'
 o.autowrite = true
