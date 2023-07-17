@@ -41,4 +41,4 @@ api.nvim_create_autocmd('FileType', { pattern = { 'NeoGitStatus' }, command = [[
 -- Enable spell checking for certain file types
 api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, { pattern = { '*.txt', '*.md', '*.tex' }, command = 'setlocal spell' })
 
-api.nvim_create_autocmd({ 'VimEnter' }, { command = ':silent exec "!kill -s SIGWINCH $PPID"' })
+-- api.nvim_create_autocmd({ 'VimEnter' }, { command = ':silent exec "!kill -s SIGWINCH $PPID"' })

@@ -42,7 +42,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
     },
     config = function()
       require 'configs.lspconfig'
@@ -107,6 +107,14 @@ require('lazy').setup({
       vim.cmd.colorscheme 'solarized'
     end,
   },
+
+  -- {
+  --   'ellisonleao/gruvbox.nvim',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme 'gruvbox'
+  --   end,
+  -- },
 
   {
     -- Set lualine as statusline
@@ -175,8 +183,21 @@ require('lazy').setup({
     end,
   },
 
+  { 'ellisonleao/glow.nvim', config = true, cmd = 'Glow' },
+
   { 'mbbill/undotree' },
 
+  { 'vim-pandoc/vim-pandoc', dependencies = {
+    'vim-pandoc/vim-pandoc-syntax',
+  } },
+  {
+    'iamcco/markdown-preview.nvim',
+    setup = {
+      run = function()
+        vim.fn['mkdp#util#install']()
+      end,
+    },
+  },
   {
     'nvim-tree/nvim-tree.lua',
     dependencies = {
@@ -198,7 +219,7 @@ require('lazy').setup({
         },
         view = {
           width = 20,
-          adaptive_size = false,
+          adaptive_size = true,
         },
         renderer = {
           group_empty = true,
@@ -276,6 +297,29 @@ require('lazy').setup({
         ['Skip Region'] = '<C-x>',
         ['Increase'] = '+',
         ['Decrease'] = '-',
+      }
+    end,
+  },
+  -- Highlight CSV columns
+  'mechatroner/rainbow_csv',
+  -- Neorg
+  {
+    'nvim-neorg/neorg',
+    build = ':Neorg sync-parsers',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('neorg').setup {
+        load = {
+          ['core.defaults'] = {}, -- Loads default behaviour
+          ['core.concealer'] = {}, -- Adds pretty icons to your documents
+          ['core.dirman'] = { -- Manages Neorg workspaces
+            config = {
+              workspaces = {
+                notes = '~/notes',
+              },
+            },
+          },
+        },
       }
     end,
   },

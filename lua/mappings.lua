@@ -30,7 +30,8 @@ map('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 map('n', '<C-p>', my_fd, { desc = 'fuzzy find file' })
-map({ 'n' }, '<C-j>', require('telescope.builtin').live_grep, nore_options)
+-- map({ 'n' }, '<C-j>', require('telescope.builtin').live_grep, nore_options)
+map({ 'n' }, '<C-j>', require('telescope.builtin').lsp_dynamic_workspace_symbols, nore_options)
 -- Tab switch buffer
 map('n', '<Tab>', ':b#<CR>', { desc = 'alternate buffer' })
 

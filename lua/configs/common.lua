@@ -83,6 +83,7 @@ M.servers = {
     },
   },
   dockerls = {},
+  marksman = {},
   jsonls = {
     cmd = { 'vscode-json-language-server', '--stdio' },
     format = { enabled = false },
