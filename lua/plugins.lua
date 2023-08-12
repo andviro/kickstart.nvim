@@ -204,59 +204,7 @@ require('lazy').setup({
       'nvim-tree/nvim-web-devicons',
     },
     config = function()
-      require('nvim-tree').setup {
-        sort_by = 'case_sensitive',
-        hijack_cursor = false,
-        respect_buf_cwd = false,
-        sync_root_with_cwd = false,
-        update_focused_file = {
-          enable = true,
-          update_root = false,
-          ignore_list = {},
-        },
-        system_open = {
-          cmd = 'xdg-open',
-        },
-        view = {
-          width = 20,
-          adaptive_size = true,
-        },
-        renderer = {
-          group_empty = true,
-          icons = {
-            show = {
-              git = true,
-              file = false,
-              folder = false,
-              folder_arrow = true,
-            },
-            glyphs = {
-              bookmark = '🔖',
-              folder = {
-                arrow_closed = '⏵',
-                arrow_open = '⏷',
-              },
-              git = {
-                unstaged = '✗',
-                staged = '✓',
-                unmerged = '⌥',
-                renamed = '➜',
-                untracked = '★',
-                deleted = '⊖',
-                ignored = '◌',
-              },
-            },
-          },
-        },
-        filters = {
-          dotfiles = true,
-        },
-      }
-      local api = require 'nvim-tree.api'
-      local Event = api.events.Event
-      api.events.subscribe(Event.TreeOpen, function()
-        api.tree.change_root(require('configs.common').get_cwd())
-      end)
+      require 'configs.nvim-tree'
     end,
   },
   {
