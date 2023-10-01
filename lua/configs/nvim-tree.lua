@@ -68,10 +68,11 @@ require('nvim-tree').setup {
     },
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
+    git_ignored = true,
+    custom = { '^\\.git$', '^\\.env$' },
   },
 }
-local api = require 'nvim-tree.api'
 -- local function open_nvim_tree()
 --   -- open the tree
 --   api.tree.open()
