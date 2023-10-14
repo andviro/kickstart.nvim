@@ -51,6 +51,8 @@ map('n', '<leader>gc', '<cmd>Git commit -v<cr>', { desc = 'Git commit' })
 map('n', '<leader>gC', '<cmd>Git commit -a -v<cr>', { desc = 'Git commit -a' })
 map('n', '<leader>gp', '<cmd>Git push -u origin HEAD<cr>', { desc = 'Git push' })
 map('n', '<leader>gu', '<cmd>Git pull<cr>', { desc = 'Git pull' })
+map('n', '<Leader>gr', "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", { silent = true, desc = 'List wo[r]ktrees' })
+map('n', '<Leader>gR', "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", { silent = true, desc = 'c[R]eate worktree' })
 
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })

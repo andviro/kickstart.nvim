@@ -17,6 +17,13 @@ api.nvim_create_autocmd('BufWritePre', {
   group = TrimWhiteSpaceGrp,
 })
 
+local FiletypeSpecific = api.nvim_create_augroup('FiletypeSpecific', { clear = true })
+api.nvim_create_autocmd('BufWritePost', {
+  pattern = { 'lfrc' },
+  command = [[!lf -remote "send  source ~/.config/lf/lfrc"]],
+  group = FiletypeSpecific,
+})
+
 -- api.nvim_create_autocmd('BufEnter', { command = [[silent! lcd <afile>:p:h]] })
 
 -- don't auto comment new line

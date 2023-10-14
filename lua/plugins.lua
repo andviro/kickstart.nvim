@@ -9,6 +9,7 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  'ThePrimeagen/git-worktree.nvim',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -150,7 +151,16 @@ require('lazy').setup({
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
     main = 'ibl',
-    opts = {},
+    opts = {
+      debounce = 100,
+      scope = {
+        show_start = false,
+        show_end = false,
+      },
+      indent = {
+        char = '┊',
+      },
+    },
   },
 
   -- "K" to comment visual regions/lines
@@ -201,9 +211,13 @@ require('lazy').setup({
 
   { 'mbbill/undotree' },
 
-  { 'vim-pandoc/vim-pandoc', dependencies = {
-    'vim-pandoc/vim-pandoc-syntax',
-  } },
+  {
+    'vim-pandoc/vim-pandoc',
+    dependencies = {
+      'vim-pandoc/vim-pandoc-syntax',
+    },
+  },
+
   {
     'iamcco/markdown-preview.nvim',
     setup = {
@@ -262,6 +276,8 @@ require('lazy').setup({
       }
     end,
   },
+  -- enhanced autchdir
+  'fmoralesc/vim-extended-autochdir',
   -- Highlight CSV columns
   'mechatroner/rainbow_csv',
   -- Neorg
