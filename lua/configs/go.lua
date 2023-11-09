@@ -22,7 +22,7 @@ require('go').setup {
   lsp_codelens = true, -- set to false to disable codelens, true by default
   lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
   diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
-    hdlr = true, -- hook lsp diag handler
+    -- hdlr = true, -- hook lsp diag handler
     underline = true,
     -- virtual text setup
     -- virtual_text = { space = 0, prefix = '' },

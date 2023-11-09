@@ -9,7 +9,6 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-  'ThePrimeagen/git-worktree.nvim',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -48,6 +47,16 @@ require('lazy').setup({
     config = function()
       require 'configs.lspconfig'
     end,
+  },
+
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
   },
 
   { 'onsails/lspkind-nvim', dependencies = { 'famiu/bufdelete.nvim' } },
@@ -175,10 +184,19 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     version = '*',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
     config = function()
       require 'configs.telescope'
     end,
+  },
+
+  {
+    'ThePrimeagen/git-worktree.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+    },
   },
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -260,6 +278,7 @@ require('lazy').setup({
     config = function()
       require('mason-null-ls').setup {
         automatic_installation = true,
+        ensure_installed = {},
       }
     end,
   },
@@ -278,6 +297,27 @@ require('lazy').setup({
   },
   -- enhanced autchdir
   'fmoralesc/vim-extended-autochdir',
+  -- python venvs
+  {
+    'linux-cultist/venv-selector.nvim',
+    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+    opts = {
+      -- Your options go here
+      -- name = "venv",
+      -- auto_refresh = false
+    },
+    event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+    keys = {
+      {
+        -- Keymap to open VenvSelector to pick a venv.
+        '<leader>vs',
+        '<cmd>:VenvSelect<cr>',
+        -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+        '<leader>vc',
+        '<cmd>:VenvSelectCached<cr>',
+      },
+    },
+  },
   -- Highlight CSV columns
   'mechatroner/rainbow_csv',
   -- Neorg
@@ -300,5 +340,52 @@ require('lazy').setup({
         },
       }
     end,
+  },
+  {
+    'folke/flash.nvim',
+    event = 'VeryLazy',
+    opts = {},
+    keys = {
+      {
+        's',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash',
+      },
+      {
+        'S',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').treesitter()
+        end,
+        desc = 'Flash Treesitter',
+      },
+      {
+        'r',
+        mode = 'o',
+        function()
+          require('flash').remote()
+        end,
+        desc = 'Remote Flash',
+      },
+      {
+        'R',
+        mode = { 'o', 'x' },
+        function()
+          require('flash').treesitter_search()
+        end,
+        desc = 'Treesitter Search',
+      },
+      {
+        '<c-s>',
+        mode = { 'c' },
+        function()
+          require('flash').toggle()
+        end,
+        desc = 'Toggle Flash Search',
+      },
+    },
   },
 }, {})

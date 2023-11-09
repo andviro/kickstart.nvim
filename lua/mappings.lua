@@ -58,7 +58,8 @@ map('n', '<Leader>gR', "<CMD>lua require('telescope').extensions.git_worktree.cr
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+map('n', '<leader>q', ':TroubleToggle<cr>', { desc = 'Toggle trouble list', remap = false, silent = true })
 
 map({ 'c', 'i' }, '<C-\\>', '<C-^>', { desc = 'switch language' })
 map({ 'c', 'i' }, '<C-/>', '<C-^>', { desc = 'switch language' })
