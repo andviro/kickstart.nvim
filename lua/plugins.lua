@@ -3,7 +3,7 @@
 --
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
-require('lazy').setup({
+require('lazy').setup {
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
@@ -20,8 +20,9 @@ require('lazy').setup({
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
+      'nvim-lua/plenary.nvim',
       {
-        'jose-elias-alvarez/null-ls.nvim',
+        'nvimtools/none-ls.nvim',
         config = function()
           require 'configs.null-ls'
         end,
@@ -40,6 +41,13 @@ require('lazy').setup({
       -- Additional lua configuration, makes nvim stuff amazing!
       { 'folke/neodev.nvim', opts = {} },
 
+      -- {
+      --   'LunarVim/breadcrumbs.nvim',
+      --   config = function()
+      --     require('breadcrumbs').setup()
+      --   end,
+      -- },
+
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
@@ -49,17 +57,23 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-  },
-
+  -- {
+  --   'folke/trouble.nvim',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   opts = {
+  --     -- your configuration comes here
+  --     -- or leave it empty to use the default settings
+  --     -- refer to the configuration section below
+  --   },
+  -- },
+  --
   { 'onsails/lspkind-nvim', dependencies = { 'famiu/bufdelete.nvim' } },
+  {
+    'onsails/diaglist.nvim',
+    config = function()
+      require('diaglist').init {}
+    end,
+  },
 
   {
     -- Autocompletion
@@ -145,13 +159,18 @@ require('lazy').setup({
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = true,
-        theme = 'solarized',
+    dependencies = {
+      {
+        'SmiteshP/nvim-navic',
+        config = function()
+          require 'configs.navic'
+        end,
+        event = 'VeryLazy',
       },
     },
+    config = function()
+      require 'configs.lualine'
+    end,
   },
 
   {
@@ -297,6 +316,7 @@ require('lazy').setup({
   },
   -- enhanced autchdir
   'fmoralesc/vim-extended-autochdir',
+
   -- python venvs
   {
     'linux-cultist/venv-selector.nvim',
@@ -342,50 +362,56 @@ require('lazy').setup({
     end,
   },
   {
-    'folke/flash.nvim',
-    event = 'VeryLazy',
-    opts = {},
-    keys = {
-      {
-        's',
-        mode = { 'n', 'x', 'o' },
-        function()
-          require('flash').jump()
-        end,
-        desc = 'Flash',
-      },
-      {
-        'S',
-        mode = { 'n', 'x', 'o' },
-        function()
-          require('flash').treesitter()
-        end,
-        desc = 'Flash Treesitter',
-      },
-      {
-        'r',
-        mode = 'o',
-        function()
-          require('flash').remote()
-        end,
-        desc = 'Remote Flash',
-      },
-      {
-        'R',
-        mode = { 'o', 'x' },
-        function()
-          require('flash').treesitter_search()
-        end,
-        desc = 'Treesitter Search',
-      },
-      {
-        '<c-s>',
-        mode = { 'c' },
-        function()
-          require('flash').toggle()
-        end,
-        desc = 'Toggle Flash Search',
-      },
+    'AntonVanAssche/music-controls.nvim',
+    dependencies = {
+      'rcarriga/nvim-notify',
     },
   },
-}, {})
+  -- {
+  --   'folke/flash.nvim',
+  --   event = 'VeryLazy',
+  --   opts = {},
+  --   keys = {
+  --   {
+  --     's',
+  --     mode = { 'n', 'x', 'o' },
+  --     function()
+  --       require('flash').jump()
+  --     end,
+  --     desc = 'Flash',
+  --   },
+  -- {
+  --   'S',
+  --   mode = { 'n', 'x', 'o' },
+  --   function()
+  --     require('flash').treesitter()
+  --   end,
+  --   desc = 'Flash Treesitter',
+  -- },
+  --   {
+  --     'r',
+  --     mode = 'o',
+  --     function()
+  --       require('flash').remote()
+  --     end,
+  --     desc = 'Remote Flash',
+  --   },
+  --   {
+  --     'R',
+  --     mode = { 'o', 'x' },
+  --     function()
+  --       require('flash').treesitter_search()
+  --     end,
+  --     desc = 'Treesitter Search',
+  --   },
+  --   {
+  --     '<c-s>',
+  --     mode = { 'c' },
+  --     function()
+  --       require('flash').toggle()
+  --     end,
+  --     desc = 'Toggle Flash Search',
+  --   },
+  -- },
+  --},
+}

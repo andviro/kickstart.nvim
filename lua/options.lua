@@ -9,14 +9,12 @@ o.updatetime = 300 -- faster completion
 o.timeoutlen = 400 -- time to wait for a mapped sequence to complete (in milliseconds)
 o.ttimeoutlen = 0 -- Time in milliseconds to wait for a key code sequence to complete
 o.backup = true -- creates a backup file
-o.backupdir = fn.stdpath 'data' .. '/backup'
-o.swapfile = true -- enable/disable swap file creation
-o.dir = fn.stdpath 'data' .. '/swap' -- swap file directory
+o.backupdir = { fn.stdpath 'data' .. '/backup' }
+o.swapfile = false -- enable/disable swap file creation
 o.undofile = true -- enable/disable undo file creation
 o.backup = true
 o.title = true
-o.undodir = fn.stdpath 'data' .. '/undo' -- set undo directory
-o.shadafile = fn.stdpath 'data' .. '/shada/main.shada' -- set shada directory
+o.undodir = { fn.stdpath 'data' .. '/undo' }
 o.history = 10000 -- Use the 'history' option to set the number of lines from command mode that are remembered.
 o.clipboard = 'unnamedplus' -- allows neovim to access the system clipboard
 o.spell = false
@@ -62,7 +60,8 @@ o.foldenable = false -- disable folding; enable with zi
 wo.foldcolumn = '1'
 wo.foldcolumn = '1'
 o.list = false
-o.listchars = 'eol:¬,tab:>·,trail:~,extends:>,precedes:<'
+-- o.listchars = { eol = '¬', tab = '  ', trail = '~', extends = '>', precedes = '<' }
+-- o.listchars = { eol = '¬', tab = '>·', trail = '~', extends = '>', precedes = '<' }
 o.shortmess = o.shortmess + 'c' -- prevent "pattern not found" messages
 wo.colorcolumn = '99999'
 o.wildmode = 'list:longest,full'

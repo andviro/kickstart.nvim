@@ -4,6 +4,36 @@ local action_layout = require 'telescope.actions.layout'
 local fb_actions = require('telescope').extensions.file_browser.actions
 require('telescope').load_extension 'git_worktree'
 
+local map = vim.keymap.set
+local nore_options = { silent = true, remap = false }
+local my_fd = function(opts)
+  opts = opts or {}
+  opts.cwd = require('configs.common').get_cwd()
+  require('telescope.builtin').find_files(opts)
+end
+
+map('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+map('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+map('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+map('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+map('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+map('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+-- See `:help telescope.builtin`
+map('n', '<C-h>', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+map('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+map('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer' })
+map('n', '<C-p>', my_fd, { desc = 'fuzzy find file' })
+-- map({ 'n' }, '<C-j>', require('telescope.builtin').live_grep, nore_options)
+map({ 'n' }, '<C-j>', require('telescope.builtin').lsp_dynamic_workspace_symbols, nore_options)
+map('n', '<Leader>gr', "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", { silent = true, desc = 'List wo[r]ktrees' })
+map('n', '<Leader>gR', "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", { silent = true, desc = 'c[R]eate worktree' })
+
 telescope.setup {
   preview = true,
   extensions = {
@@ -74,11 +104,13 @@ telescope.setup {
         -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/mappings.lua
         ['<esc>'] = actions.close,
         ['<C-j>'] = actions.move_selection_next,
+        ['<Down>'] = actions.move_selection_next,
         ['<PageUp>'] = actions.results_scrolling_up,
         ['<PageDown>'] = actions.results_scrolling_down,
         ['<C-u>'] = actions.preview_scrolling_up,
         ['<C-d>'] = actions.preview_scrolling_down,
         ['<C-k>'] = actions.move_selection_previous,
+        ['<Up>'] = actions.move_selection_previous,
         ['<C-q>'] = actions.send_selected_to_qflist,
         ['<C-l>'] = actions.send_to_qflist,
         ['<Tab>'] = actions.toggle_selection + actions.move_selection_worse,
