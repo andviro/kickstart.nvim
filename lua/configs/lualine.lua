@@ -15,10 +15,10 @@ require('lualine').setup {
     lualine_a = { imode },
     lualine_b = { 'branch' },
     lualine_c = {
-      {
-        'filename',
-        path = 3,
-      },
+      -- {
+      --   'filename',
+      --   path = 3,
+      -- },
       'diff',
       'diagnostics',
     },

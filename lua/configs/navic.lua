@@ -6,7 +6,8 @@ require('nvim-navic').setup {
     auto_attach = true,
   },
   click = true,
-  separator = ' ' .. icons.ui.ChevronRight .. ' ',
+  -- separator = '' .. icons.ui.ChevronRight .. ' ',
   depth_limit = 0,
   depth_limit_indicator = '..',
+  safe_output = true,
 }

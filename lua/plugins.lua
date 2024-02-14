@@ -41,13 +41,6 @@ require('lazy').setup {
       -- Additional lua configuration, makes nvim stuff amazing!
       { 'folke/neodev.nvim', opts = {} },
 
-      -- {
-      --   'LunarVim/breadcrumbs.nvim',
-      --   config = function()
-      --     require('breadcrumbs').setup()
-      --   end,
-      -- },
-
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
@@ -71,10 +64,12 @@ require('lazy').setup {
   {
     'onsails/diaglist.nvim',
     config = function()
+      local map = vim.keymap.set
       require('diaglist').init {}
+      map('n', '<leader>q', require('diaglist').open_all_diagnostics, { desc = 'Open diagnostics list' })
+      map('n', '<leader>Q', require('diaglist').open_buffer_diagnostics, { desc = 'Open diagnostics list' })
     end,
   },
-
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -148,6 +143,36 @@ require('lazy').setup {
     end,
   },
 
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme 'catppuccin-macchiato'
+    end,
+  },
+  {
+    'sainnhe/gruvbox-material',
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme 'gruvbox-material'
+    end,
+  },
+  -- {
+  --   'luisiacc/gruvbox-baby',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme 'gruvbox-baby'
+  --   end,
+  -- },
+  -- {
+  --   'kepano/flexoki-neovim',
+  --   name = 'flexoki',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme 'flexoki-dark'
+  --   end,
+  -- },
   -- {
   --   'ellisonleao/gruvbox.nvim',
   --   priority = 1000,
@@ -159,15 +184,6 @@ require('lazy').setup {
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    dependencies = {
-      {
-        'SmiteshP/nvim-navic',
-        config = function()
-          require 'configs.navic'
-        end,
-        event = 'VeryLazy',
-      },
-    },
     config = function()
       require 'configs.lualine'
     end,
@@ -320,7 +336,24 @@ require('lazy').setup {
   -- python venvs
   {
     'linux-cultist/venv-selector.nvim',
-    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'nvim-telescope/telescope.nvim',
+      'mfussenegger/nvim-dap-python',
+      {
+        'SmiteshP/nvim-navic',
+        config = function()
+          require 'configs.navic'
+        end,
+        event = 'VeryLazy',
+      },
+      {
+        'LunarVim/breadcrumbs.nvim',
+        config = function()
+          require('breadcrumbs').setup()
+        end,
+      },
+    },
     opts = {
       -- Your options go here
       -- name = "venv",
