@@ -50,26 +50,26 @@ require('lazy').setup {
     end,
   },
 
-  -- {
-  --   'folke/trouble.nvim',
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  --   opts = {
-  --     -- your configuration comes here
-  --     -- or leave it empty to use the default settings
-  --     -- refer to the configuration section below
-  --   },
-  -- },
-  --
-  { 'onsails/lspkind-nvim', dependencies = { 'famiu/bufdelete.nvim' } },
   {
-    'onsails/diaglist.nvim',
-    config = function()
-      local map = vim.keymap.set
-      require('diaglist').init {}
-      map('n', '<leader>q', require('diaglist').open_all_diagnostics, { desc = 'Open diagnostics list' })
-      map('n', '<leader>Q', require('diaglist').open_buffer_diagnostics, { desc = 'Open diagnostics list' })
-    end,
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
   },
+
+  { 'onsails/lspkind-nvim', dependencies = { 'famiu/bufdelete.nvim' } },
+  -- {
+  --   'onsails/diaglist.nvim',
+  --   config = function()
+  --     local map = vim.keymap.set
+  --     require('diaglist').init {}
+  --     map('n', '<leader>q', require('diaglist').open_all_diagnostics, { desc = 'Open diagnostics list' })
+  --     map('n', '<leader>Q', require('diaglist').open_buffer_diagnostics, { desc = 'Open buffer diagnostics list' })
+  --   end,
+  -- },
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -212,6 +212,16 @@ require('lazy').setup {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
+    end,
+  },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require 'configs.harpoon'
     end,
   },
 

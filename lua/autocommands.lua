@@ -50,7 +50,7 @@ api.nvim_create_autocmd('BufReadPost', { command = [[if line("'\"") > 1 && line(
 -- windows to close with "q"
 api.nvim_create_autocmd('FileType', {
   pattern = { 'help', 'startuptime', 'qf', 'lspinfo', 'fugitive', 'null-ls-info' },
-  command = [[nnoremap <buffer><silent> q :close<CR>]],
+  command = [[nnoremap <buffer><silent> q :close<CR>|nnoremap <buffer> <CR> <CR>]],
 })
 api.nvim_create_autocmd('FileType', { pattern = 'man', command = [[nnoremap <buffer><silent> q :quit<CR>]] })
 
