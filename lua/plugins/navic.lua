@@ -15,5 +15,5 @@ return {
       safe_output = true,
     }
   end,
-  event = 'VeryLazy',
+  -- event = 'VeryLazy',
 }

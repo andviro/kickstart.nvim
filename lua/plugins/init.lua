@@ -11,9 +11,11 @@ return {
   -- Detect file encoding
   's3rvac/AutoFenc',
 
-  -- Useful plugin to show you pending keybinds.
-  'folke/which-key.nvim',
-
+  'nvim-lua/plenary.nvim',
+  {
+    'stevearc/stickybuf.nvim',
+    opts = {},
+  },
   {
     'kristijanhusak/vim-dadbod-ui',
     dependencies = {
@@ -261,10 +263,10 @@ return {
     },
   },
 
-      {
-        'LunarVim/breadcrumbs.nvim',
-        opts = {},
-      },
+  -- {
+  --   'LunarVim/breadcrumbs.nvim',
+  --   opts = {},
+  -- },
   -- {
   --   'folke/flash.nvim',
   --   event = 'VeryLazy',

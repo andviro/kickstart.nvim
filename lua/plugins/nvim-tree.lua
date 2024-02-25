@@ -3,6 +3,7 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
+  event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
   config = function()
     local api = require 'nvim-tree.api'
     local function edit_or_open()
@@ -86,7 +87,7 @@ return {
     -- end
     local Event = api.events.Event
     api.events.subscribe(Event.TreeOpen, function()
-      api.tree.change_root(require('configs.common').get_cwd())
+      api.tree.change_root(require('core.common').get_cwd())
     end)
     -- vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
     vim.api.nvim_create_autocmd('QuitPre', {
@@ -111,5 +112,8 @@ return {
         end
       end,
     })
+    -- misc
+    local map = vim.keymap.set
+    map('n', '<leader><Tab>', '<cmd>NvimTreeToggle<cr>', { desc = 'Toggle NvimTree' })
   end,
 }

@@ -4,6 +4,7 @@ return {
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'stevearc/aerial.nvim',
   },
   config = function()
     local telescope = require 'telescope'
@@ -38,7 +39,8 @@ return {
     end, { desc = '[/] Fuzzily search in current buffer' })
     map('n', '<C-p>', my_fd, { desc = 'fuzzy find file' })
     -- map({ 'n' }, '<C-j>', require('telescope.builtin').live_grep, nore_options)
-    map({ 'n' }, '<C-j>', require('telescope.builtin').lsp_dynamic_workspace_symbols, nore_options)
+    -- map({ 'n' }, '<C-j>', require('telescope.builtin').lsp_dynamic_workspace_symbols, nore_options)
+    map({ 'n' }, '<C-j>', require('telescope').extensions.aerial.aerial, nore_options)
     map('n', '<Leader>gr', "<CMD>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", { silent = true, desc = 'List wo[r]ktrees' })
     map('n', '<Leader>gR', "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", { silent = true, desc = 'c[R]eate worktree' })
 
@@ -170,5 +172,6 @@ return {
 
     telescope.load_extension 'fzf'
     telescope.load_extension 'file_browser'
+    telescope.load_extension 'aerial'
   end,
 }
