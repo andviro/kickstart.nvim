@@ -25,7 +25,7 @@ return {
           {
             'filename',
           },
-          'aerial',
+          -- 'aerial',
           'diff',
           'diagnostics',
         },

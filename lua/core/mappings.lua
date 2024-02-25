@@ -65,6 +65,3 @@ map({ 'c' }, '<C-N>', '<Down>', nore_options)
 map({ 'c' }, '<C-P>', '<Up>', nore_options)
 map({ 'c' }, '<Esc><C-B>', '<S-Left>', nore_options)
 map({ 'c' }, '<Esc><C-F>', '<S-Right>', nore_options)
-
--- misc
-map('n', '<leader><Tab>', '<cmd>NvimTreeToggle<cr>', { desc = 'Toggle NvimTree' })

@@ -263,10 +263,10 @@ return {
     },
   },
 
-  -- {
-  --   'LunarVim/breadcrumbs.nvim',
-  --   opts = {},
-  -- },
+  {
+    'LunarVim/breadcrumbs.nvim',
+    opts = {},
+  },
   -- {
   --   'folke/flash.nvim',
   --   event = 'VeryLazy',
