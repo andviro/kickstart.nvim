@@ -2,6 +2,10 @@ local o = vim.opt
 local wo = vim.wo
 local fn = vim.fn
 
+-- Set ; as the leader key
+vim.g.mapleader = ';'
+vim.g.maplocalleader = ';'
+
 vim.cmd 'set inccommand=split'
 vim.cmd 'filetype on'
 o.guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50' -- block in normal and beam cursor in insert mode
