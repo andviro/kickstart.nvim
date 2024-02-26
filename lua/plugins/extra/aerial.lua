@@ -1,14 +1,18 @@
 return {
   'stevearc/aerial.nvim',
+  -- keys = {
+  --   { '<leader>a', '<cmd>AerialToggle!<CR>', desc = 'Toggle aerial' },
+  -- },
   config = function()
     require('aerial').setup {
+      backends = { 'treesitter', 'lsp', 'markdown', 'man' },
       -- optionally use on_attach to set keymaps when aerial has attached to a buffer
       on_attach = function(bufnr)
         -- Jump forwards/backwards with '{' and '}'
         vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
         vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
-      open_automatic = true,
+      open_automatic = false,
       layout = {
         -- These control the width of the aerial window.
         -- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
@@ -37,8 +41,19 @@ return {
 
         -- Preserve window size equality with (:help CTRL-W_=)
         preserve_equality = false,
+
+        -- filter_kind = false,
+        filter_kind = {
+          'Class',
+          'Constructor',
+          'Enum',
+          'Function',
+          'Interface',
+          'Module',
+          'Method',
+          'Struct',
+        },
       },
-      vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>'),
     }
   end,
 }

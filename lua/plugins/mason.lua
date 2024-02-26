@@ -41,24 +41,19 @@ return {
 
     mason_tool_installer.setup {
       ensure_installed = {
-        'prettier', -- prettier formatter
-        'stylua', -- lua formatter
-        'isort', -- python formatter
-        'black', -- python formatter
-        'pylint', -- python linter
-        'eslint_d', -- js linter
-        'buf', -- protobuf linter
-        'buf-language-server', -- protobuf linter
         'bash-language-server',
         'black',
-        'clang-format',
+        'black', -- python formatter
+        'buf-language-server', -- protobuf linter
+        'buf', -- protobuf linter
         'clangd',
+        'clang-format',
         'css-lsp',
-        'dockerfile-language-server',
         'css-lsp',
         'deno',
+        'dockerfile-language-server',
+        'eslint_d', -- js linter
         'eslint-lsp',
-        'eslint_d',
         'fixjson',
         'flake8',
         'gofumpt',
@@ -66,14 +61,19 @@ return {
         'gopls',
         'html-lsp',
         'isort',
+        'isort', -- python formatter
         'json-lsp',
         'lua-language-server',
         'marksman',
         'prettier',
+        'prettier', -- prettier formatter
         'pylint',
+        'pylint', -- python linter
         'pyright',
         'rust-analyzer',
         'stylua',
+        'stylua', -- lua formatter
+        'taplo',
         'typescript-language-server',
         'yaml-language-server',
       },

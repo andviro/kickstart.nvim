@@ -1,9 +1,6 @@
 return {
   -- Set lualine as statusline
   'nvim-lualine/lualine.nvim',
-  dependencies = {
-    'stevearc/aerial.nvim',
-  },
   config = function()
     local function imode()
       if vim.o.iminsert == 1 then
@@ -24,8 +21,8 @@ return {
         lualine_c = {
           {
             'filename',
+            path = 1,
           },
-          -- 'aerial',
           'diff',
           'diagnostics',
         },
