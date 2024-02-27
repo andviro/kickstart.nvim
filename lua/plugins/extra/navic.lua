@@ -6,14 +6,14 @@ return {
       icons = icons.kind,
       highlight = true,
       lsp = {
-        auto_attach = false,
+        auto_attach = true,
       },
       click = true,
-      -- separator = '' .. icons.ui.ChevronRight .. ' ',
+      separator = '' .. icons.ui.ChevronRight .. ' ',
       depth_limit = 0,
       depth_limit_indicator = '..',
       safe_output = true,
     }
   end,
-  -- event = 'VeryLazy',
+  event = 'VeryLazy',
 }

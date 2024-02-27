@@ -19,6 +19,7 @@ return {
         lua = { 'stylua' },
         python = { 'isort', 'black' },
         toml = { 'taplo' },
+        go = { 'goimports' },
       },
       format_on_save = {
         lsp_fallback = true,

@@ -37,7 +37,10 @@ M.on_attach = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     -- local navic = require 'nvim-navic'
     -- navic.attach(client, bufnr)
-    require('outline').open { focus_outline = false }
+    local ok, outline = pcall(require, 'outline')
+    if ok then
+      outline.open { focus_outline = false }
+    end
     nmap('<CR>', vim.lsp.buf.definition, 'Go to definition')
     nmap('<C-k>', '<cmd>Telescope diagnostics<cr>', 'Telescope diagnostics')
     nmap('K', vim.lsp.buf.hover, 'Help')
@@ -82,7 +85,15 @@ M.servers = {
       telemetry = { enable = false },
     },
   },
-  taplo = {},
+  taplo = {
+    schemaStore = {
+      enable = true,
+      url = 'https://www.schemastore.org/api/json/catalog.json',
+    },
+    schemas = {
+      ['https://raw.githubusercontent.com/distinction-dev/alacritty-schema/main/alacritty/reference.json'] = '*alacritty.{yml,yaml}',
+    },
+  },
   dockerls = {},
   marksman = {},
   jsonls = {
@@ -145,6 +156,7 @@ M.servers = {
       ['https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json'] = '*api*.{yml,yaml}',
       ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = '*docker-compose*.{yml,yaml}',
       ['https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json'] = '*flow*.{yml,yaml}',
+      ['https://raw.githubusercontent.com/distinction-dev/alacritty-schema/main/alacritty/reference.json'] = '*alacritty.{yml,yaml}',
     },
     format = { enabled = false },
     validate = false, -- TODO: conflicts between Kubernetes resources and kustomization.yaml

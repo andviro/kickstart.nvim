@@ -17,24 +17,6 @@ return {
     opts = {},
   },
   {
-    'kristijanhusak/vim-dadbod-ui',
-    dependencies = {
-      { 'tpope/vim-dadbod', lazy = true },
-      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
-    },
-    cmd = {
-      'DBUI',
-      'DBUIToggle',
-      'DBUIAddConnection',
-      'DBUIFindBuffer',
-    },
-    init = function()
-      -- Your DBUI configuration
-      vim.g.db_ui_use_nerd_fonts = 1
-    end,
-  },
-
-  {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -49,10 +31,6 @@ return {
     },
   },
 
-  -- Useful status updates for LSP
-  -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-  { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
-
   {
     'folke/trouble.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -62,6 +40,8 @@ return {
       -- refer to the configuration section below
     },
   },
+
+  'folke/neodev.nvim',
 
   { 'onsails/lspkind-nvim', dependencies = { 'famiu/bufdelete.nvim' } },
 
@@ -130,20 +110,6 @@ return {
     },
   },
 
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-  -- Only load if `make` is available. Make sure you have the system
-  -- requirements installed.
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    -- NOTE: If you are having trouble with this installation,
-    --       refer to the README for telescope-fzf-native for more instructions.
-    build = 'make',
-    cond = function()
-      return vim.fn.executable 'make' == 1
-    end,
-  },
-  { 'nvim-telescope/telescope-file-browser.nvim' },
-
   { 'ellisonleao/glow.nvim', config = true, cmd = 'Glow' },
 
   { 'mbbill/undotree' },
@@ -192,81 +158,17 @@ return {
   --     }
   --   end,
   -- },
-  {
-    'mg979/vim-visual-multi',
-    branch = 'master',
-    config = function()
-      vim.g.VM_maps = {
-        ['Select All'] = '<M-n>',
-        ['Visual All'] = '<M-n>',
-        ['Skip Region'] = '<C-x>',
-        ['Increase'] = '+',
-        ['Decrease'] = '-',
-      }
-    end,
-  },
   -- enhanced autchdir
   'fmoralesc/vim-extended-autochdir',
 
-  -- python venvs
-  {
-    'linux-cultist/venv-selector.nvim',
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      'nvim-telescope/telescope.nvim',
-      'mfussenegger/nvim-dap-python',
-    },
-    opts = {
-      -- Your options go here
-      -- name = "venv",
-      -- auto_refresh = false
-    },
-    event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
-    keys = {
-      {
-        -- Keymap to open VenvSelector to pick a venv.
-        '<leader>vs',
-        '<cmd>:VenvSelect<cr>',
-        -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
-        '<leader>vc',
-        '<cmd>:VenvSelectCached<cr>',
-      },
-    },
-  },
   -- Highlight CSV columns
   'mechatroner/rainbow_csv',
-  -- Neorg
-  {
-    'nvim-neorg/neorg',
-    build = ':Neorg sync-parsers',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('neorg').setup {
-        load = {
-          ['core.defaults'] = {}, -- Loads default behaviour
-          ['core.concealer'] = {}, -- Adds pretty icons to your documents
-          ['core.dirman'] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = '~/notes',
-              },
-            },
-          },
-        },
-      }
-    end,
-  },
   {
     'AntonVanAssche/music-controls.nvim',
     dependencies = {
       'rcarriga/nvim-notify',
     },
   },
-
-  -- {
-  --   'LunarVim/breadcrumbs.nvim',
-  --   opts = {},
-  -- },
   -- {
   --   'folke/flash.nvim',
   --   event = 'VeryLazy',

@@ -23,7 +23,7 @@ return {
       lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
       lsp_on_attach = require('core.common').on_attach,
       -- if lsp_on_attach is a function: use this function as on_attach function for gopls
-      lsp_codelens = true, -- set to false to disable codelens, true by default
+      lsp_codelens = false, -- set to false to disable codelens, true by default
       lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
       diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
         -- hdlr = true, -- hook lsp diag handler

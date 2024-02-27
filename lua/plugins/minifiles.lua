@@ -1,9 +1,10 @@
 return {
   'echasnovski/mini.files',
   version = '*',
+  keys = {
+    { '<leader><Tab>', '<cmd>lua MiniFiles.open()<cr>', desc = 'Open minifiles' },
+  },
   config = function()
-    local map = vim.keymap.set
     require('mini.files').setup()
-    map('n', '<leader><Tab>', '<cmd>lua MiniFiles.open()<cr>', { desc = 'Open minifiles' })
   end,
 }

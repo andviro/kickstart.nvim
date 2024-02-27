@@ -5,12 +5,23 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     -- 'stevearc/aerial.nvim',
+    -- Fuzzy Finder Algorithm which requires local dependencies to be built.
+    -- Only load if `make` is available. Make sure you have the system
+    -- requirements installed.
+    {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make',
+      cond = function()
+        return vim.fn.executable 'make' == 1
+      end,
+    },
+    -- { 'nvim-telescope/telescope-file-browser.nvim' },
   },
   config = function()
     local telescope = require 'telescope'
     local actions = require 'telescope.actions'
     local action_layout = require 'telescope.actions.layout'
-    local fb_actions = require('telescope').extensions.file_browser.actions
+    -- local fb_actions = require('telescope').extensions.file_browser.actions
     require('telescope').load_extension 'git_worktree'
 
     local map = vim.keymap.set
@@ -56,20 +67,20 @@ return {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown {},
         },
-        file_browser = {
-          mappings = {
-            i = {
-              ['<c-n>'] = fb_actions.create,
-              ['<c-r>'] = fb_actions.rename,
-              -- ["<c-h>"] = actions.which_key,
-              ['<c-h>'] = fb_actions.toggle_hidden,
-              ['<c-x>'] = fb_actions.remove,
-              ['<c-p>'] = fb_actions.move,
-              ['<c-y>'] = fb_actions.copy,
-              ['<c-a>'] = fb_actions.select_all,
-            },
-          },
-        },
+        -- file_browser = {
+        --   mappings = {
+        --     i = {
+        --       ['<c-n>'] = fb_actions.create,
+        --       ['<c-r>'] = fb_actions.rename,
+        --       -- ["<c-h>"] = actions.which_key,
+        --       ['<c-h>'] = fb_actions.toggle_hidden,
+        --       ['<c-x>'] = fb_actions.remove,
+        --       ['<c-p>'] = fb_actions.move,
+        --       ['<c-y>'] = fb_actions.copy,
+        --       ['<c-a>'] = fb_actions.select_all,
+        --     },
+        --   },
+        -- },
       },
       pickers = {
         find_files = {
@@ -171,7 +182,7 @@ return {
     }
 
     telescope.load_extension 'fzf'
-    telescope.load_extension 'file_browser'
+    -- telescope.load_extension 'file_browser'
     -- telescope.load_extension 'aerial'
   end,
 }

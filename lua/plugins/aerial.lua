@@ -5,14 +5,14 @@ return {
   -- },
   config = function()
     require('aerial').setup {
-      backends = { 'treesitter', 'lsp', 'markdown', 'man' },
+      backends = { 'lsp', 'treesitter', 'markdown', 'man' },
       -- optionally use on_attach to set keymaps when aerial has attached to a buffer
       on_attach = function(bufnr)
         -- Jump forwards/backwards with '{' and '}'
         vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
         vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
-      open_automatic = false,
+      open_automatic = true,
       layout = {
         -- These control the width of the aerial window.
         -- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
@@ -55,5 +55,6 @@ return {
         },
       },
     }
+    vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
   end,
 }

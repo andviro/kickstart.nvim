@@ -67,7 +67,6 @@ return {
         'marksman',
         'prettier',
         'prettier', -- prettier formatter
-        'pylint',
         'pylint', -- python linter
         'pyright',
         'rust-analyzer',
