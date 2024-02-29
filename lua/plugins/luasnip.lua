@@ -1,6 +1,9 @@
 return {
   'L3MON4D3/LuaSnip',
   dependencies = {
+    'rafamadriz/friendly-snippets',
+    'stevearc/vim-vscode-snippets',
+    'rafamadriz/friendly-snippets',
     'stevearc/vim-vscode-snippets',
   },
   event = 'InsertEnter *',

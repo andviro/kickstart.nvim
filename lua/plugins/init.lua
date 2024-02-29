@@ -41,8 +41,6 @@ return {
     },
   },
 
-  'folke/neodev.nvim',
-
   { 'onsails/lspkind-nvim', dependencies = { 'famiu/bufdelete.nvim' } },
 
   -- {

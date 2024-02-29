@@ -1,9 +1,9 @@
 return {
-  "nvimtools/none-ls.nvim", -- configure formatters & linters
+  'nvimtools/none-ls.nvim', -- configure formatters & linters
   lazy = true,
-  -- event = { "BufReadPre", "BufNewFile" }, -- to enable uncomment this
+  event = { 'BufReadPre', 'BufNewFile' }, -- to enable uncomment this
   dependencies = {
-    "jay-babu/mason-null-ls.nvim",
+    'jay-babu/mason-null-ls.nvim',
   },
   config = function()
     local present, null_ls = pcall(require, 'null-ls')
@@ -47,11 +47,11 @@ return {
       b.formatting.gofumpt,
 
       -- webdev stuff
-      b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
+      -- b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
       b.formatting.prettier.with { filetypes = { 'html', 'markdown', 'css', 'yaml' } }, -- so prettier works only on these filetypes
 
       -- misc
-      b.formatting.fixjson,
+      -- b.formatting.fixjson,
       b.formatting.black,
 
       -- Lua

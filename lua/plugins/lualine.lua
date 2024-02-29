@@ -13,20 +13,24 @@ return {
       options = {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
+        -- section_separators = { left = '', right = '' },
+        -- component_separators = { left = '', right = '' },
         ignore_focus = { 'NvimTree' },
       },
       sections = {
         lualine_a = { imode },
-        lualine_b = { 'branch' },
+        lualine_b = {
+          'branch',
+        },
         lualine_c = {
           {
             'filename',
-            path = 1,
+            path = 4,
           },
           'diff',
           'diagnostics',
         },
-        lualine_x = { 'copilot', 'filetype' },
+        lualine_x = { 'encoding', 'fileformat', { 'filetype', icon_only = true } },
         lualine_y = { 'progress' },
         --   lualine_c = {
         --     'filename',
@@ -44,7 +48,7 @@ return {
         --     },
         --   },
       },
-      extensions = { 'quickfix', 'man', 'fugitive', 'nvim-tree' },
+      extensions = { 'aerial', 'quickfix', 'man', 'fugitive', 'nvim-tree', 'mundo' },
     }
   end,
 }

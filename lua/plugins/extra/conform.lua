@@ -20,6 +20,7 @@ return {
         python = { 'isort', 'black' },
         toml = { 'taplo' },
         go = { 'goimports' },
+        buf = { 'buf' },
       },
       format_on_save = {
         lsp_fallback = true,

@@ -4,10 +4,12 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
+    'folke/neodev.nvim',
     { 'antosha417/nvim-lsp-file-operations', config = true },
     { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
   },
   config = function()
+    require('neodev').setup()
     local lspconfig = require 'lspconfig'
     local cfg = require 'core.common'
     local util = require 'lspconfig/util'
