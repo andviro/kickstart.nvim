@@ -73,6 +73,7 @@ return {
         'stylua',
         'stylua', -- lua formatter
         'taplo',
+        'revive',
         'typescript-language-server',
         'yaml-language-server',
       },

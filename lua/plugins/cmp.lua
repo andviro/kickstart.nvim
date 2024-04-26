@@ -12,6 +12,7 @@ return {
     'hrsh7th/cmp-calc',
     'lukas-reineke/cmp-rg',
     'hrsh7th/cmp-nvim-lsp-signature-help',
+    'onsails/lspkind.nvim',
   },
   event = 'InsertEnter *',
   config = function()
@@ -115,7 +116,7 @@ return {
       },
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_signature_help' },
+        -- { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip' },
       }, {
         { name = 'buffer', keyword_length = 5 },

@@ -23,6 +23,11 @@ api.nvim_create_autocmd('BufWritePost', {
   command = [[!lf -remote "send  source ~/.config/lf/lfrc"]],
   group = FiletypeSpecific,
 })
+api.nvim_create_autocmd('BufReadPre', {
+  pattern = { '*.tmpl', '*.yaml', '*.yml' },
+  command = [[if search('{{.\+}}', 'nw') | setlocal filetype=gotmpl | endif]],
+  group = FiletypeSpecific,
+})
 
 -- vim.api.nvim_create_autocmd('VimEnter', {
 --   desc = 'Auto select virtualenv Nvim open',
@@ -49,7 +54,7 @@ api.nvim_create_autocmd('BufReadPost', { command = [[if line("'\"") > 1 && line(
 
 -- windows to close with "q"
 api.nvim_create_autocmd('FileType', {
-  pattern = { 'help', 'query', 'startuptime', 'qf', 'lspinfo', 'fugitive', 'null-ls-info' },
+  pattern = { 'help', 'query', 'startuptime', 'qf', 'lspinfo', 'git', 'fugitive*', 'null-ls-info' },
   command = [[nnoremap <buffer><silent> q :close<CR>|nnoremap <buffer> <CR> <CR>]],
 })
 api.nvim_create_autocmd('FileType', { pattern = 'man', command = [[nnoremap <buffer><silent> q :quit<CR>]] })

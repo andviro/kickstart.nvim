@@ -16,6 +16,7 @@ return {
         -- section_separators = { left = '', right = '' },
         -- component_separators = { left = '', right = '' },
         ignore_focus = { 'NvimTree' },
+        -- theme = 'solarized-osaka',
       },
       sections = {
         lualine_a = { imode },

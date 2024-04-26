@@ -32,7 +32,6 @@ map('n', '<leader>gu', '<cmd>Git pull<cr>', { desc = 'Git pull' })
 -- map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 -- map('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostics list' })
-map('n', '<leader>q', ':TroubleToggle<cr>', { desc = 'Toggle trouble list', remap = false, silent = true })
 
 map({ 'c', 'i' }, '<C-\\>', '<C-^>', { desc = 'switch language', silent = true })
 map({ 'c', 'i' }, '<C-/>', '<C-^>', { desc = 'switch language', silent = true })

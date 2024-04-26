@@ -1,5 +1,7 @@
 return {
   -- NOTE: First, some plugins that don't require any configuration
+  { 'folke/neodev.nvim', opts = {} },
+  'nvim-lua/plenary.nvim',
 
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -10,8 +12,11 @@ return {
 
   -- Detect file encoding
   's3rvac/AutoFenc',
-
-  'nvim-lua/plenary.nvim',
+  {
+    'vhyrro/luarocks.nvim',
+    priority = 1000, -- We'd like this plugin to load first out of the rest
+    config = true, -- This automatically runs `require("luarocks-nvim").setup()`
+  },
   {
     'stevearc/stickybuf.nvim',
     opts = {},
@@ -31,27 +36,6 @@ return {
     },
   },
 
-  {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-  },
-
-  { 'onsails/lspkind-nvim', dependencies = { 'famiu/bufdelete.nvim' } },
-
-  -- {
-  --   'onsails/diaglist.nvim',
-  --   config = function()
-  --     local map = vim.keymap.set
-  --     require('diaglist').init {}
-  --     map('n', '<leader>q', require('diaglist').open_all_diagnostics, { desc = 'Open diagnostics list' })
-  --     map('n', '<leader>Q', require('diaglist').open_buffer_diagnostics, { desc = 'Open buffer diagnostics list' })
-  --   end,
-  -- },
   -- {
   --   'luisiacc/gruvbox-baby',
   --   priority = 1000,

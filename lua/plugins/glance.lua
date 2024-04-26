@@ -1,7 +1,7 @@
 return {
   'dnlhc/glance.nvim',
   keys = {
-    { '<M-CR>', '<cmd>Glance references<CR>', desc = 'Symbol references' },
+    { '<Leader><CR>', '<cmd>Glance references<CR>', desc = 'Symbol references' },
   },
   config = function()
     require('glance').setup {

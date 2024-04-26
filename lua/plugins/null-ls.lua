@@ -44,7 +44,13 @@ return {
     local sources = {
       -- go
       b.formatting.goimports,
-      b.formatting.gofumpt,
+      -- b.diagnostics.revive,
+      b.formatting.golines.with {
+        extra_args = {
+          '--max-len=180',
+          '--base-formatter=gofumpt',
+        },
+      },
 
       -- webdev stuff
       -- b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
