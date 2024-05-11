@@ -18,20 +18,11 @@ map('n', '<Tab>', ':b#<CR>', { desc = 'alternate buffer' })
 
 map('n', '<leader>u', '<cmd>UndotreeToggle<cr>', { desc = '[U]ntotree toggle' })
 
-map('n', '<leader>gs', '<cmd>Git<cr>', { desc = 'Git status' })
-map('n', '<leader>ga', '<cmd>Git add %<cr>', { desc = 'Git add buffer' })
-map('n', '<leader>gA', '<cmd>Git add -A .<cr>', { desc = 'Git add all' })
-map('n', '<leader>gB', '<cmd>GitBlameToggle<cr>', { desc = 'Toggle Blame' })
-map('n', '<leader>gc', '<cmd>Git commit -v<cr>', { desc = 'Git commit' })
-map('n', '<leader>gC', '<cmd>Git commit -a -v<cr>', { desc = 'Git commit -a' })
-map('n', '<leader>gp', '<cmd>Git push -u origin HEAD<cr>', { desc = 'Git push' })
-map('n', '<leader>gu', '<cmd>Git pull<cr>', { desc = 'Git pull' })
-
 -- Diagnostic keymaps
 -- map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 -- map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
--- map('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostics list' })
+map('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostics list' })
 
 map({ 'c', 'i' }, '<C-\\>', '<C-^>', { desc = 'switch language', silent = true })
 map({ 'c', 'i' }, '<C-/>', '<C-^>', { desc = 'switch language', silent = true })

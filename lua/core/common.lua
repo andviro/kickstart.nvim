@@ -18,8 +18,8 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local api = require 'Comment.api'
-local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+-- local api = require 'Comment.api'
+-- local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 M.on_attach = function(client, bufnr)
@@ -30,10 +30,10 @@ M.on_attach = function(client, bufnr)
 
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
-  vim.keymap.set('x', 'K', function()
-    vim.api.nvim_feedkeys(esc, 'nx', false)
-    api.toggle.linewise(vim.fn.visualmode())
-  end)
+  -- vim.keymap.set('x', 'K', function()
+  --   vim.api.nvim_feedkeys(esc, 'nx', false)
+  --   api.toggle.linewise(vim.fn.visualmode())
+  -- end)
   if client.server_capabilities.documentSymbolProvider then
     -- local navic = require 'nvim-navic'
     -- navic.attach(client, bufnr)

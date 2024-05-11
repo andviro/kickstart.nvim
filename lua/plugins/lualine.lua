@@ -1,6 +1,11 @@
 return {
   -- Set lualine as statusline
   'nvim-lualine/lualine.nvim',
+  dependencies = {
+    {
+      'romainl/Apprentice',
+    },
+  },
   config = function()
     local function imode()
       if vim.o.iminsert == 1 then

@@ -4,7 +4,19 @@ return {
   'nvim-lua/plenary.nvim',
 
   -- Git related plugins
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    config = function()
+      -- map('n', '<leader>gs', '<cmd>Git<cr>', { desc = 'Git status' })
+      -- map('n', '<leader>ga', '<cmd>Git add %<cr>', { desc = 'Git add buffer' })
+      -- map('n', '<leader>gA', '<cmd>Git add -A .<cr>', { desc = 'Git add all' })
+      -- map('n', '<leader>gB', '<cmd>GitBlameToggle<cr>', { desc = 'Toggle Blame' })
+      -- map('n', '<leader>gc', '<cmd>Git commit -v<cr>', { desc = 'Git commit' })
+      -- map('n', '<leader>gC', '<cmd>Git commit -a -v<cr>', { desc = 'Git commit -a' })
+      -- map('n', '<leader>gp', '<cmd>Git push -u origin HEAD<cr>', { desc = 'Git push' })
+      -- map('n', '<leader>gu', '<cmd>Git pull<cr>', { desc = 'Git pull' })
+    end,
+  },
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
@@ -15,7 +27,7 @@ return {
   {
     'vhyrro/luarocks.nvim',
     priority = 1000, -- We'd like this plugin to load first out of the rest
-    config = true, -- This automatically runs `require("luarocks-nvim").setup()`
+    opts = {}, -- This automatically runs `require("luarocks-nvim").setup()`
   },
   {
     'stevearc/stickybuf.nvim',
@@ -25,6 +37,7 @@ return {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
+      current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
       -- See `:help gitsigns.txt`
       signs = {
         add = { text = '+' },
@@ -35,30 +48,6 @@ return {
       },
     },
   },
-
-  -- {
-  --   'luisiacc/gruvbox-baby',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'gruvbox-baby'
-  --   end,
-  -- },
-  -- {
-  --   'kepano/flexoki-neovim',
-  --   name = 'flexoki',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'flexoki-dark'
-  --   end,
-  -- },
-  -- {
-  --   'ellisonleao/gruvbox.nvim',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'gruvbox'
-  --   end,
-  -- },
-
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
@@ -75,14 +64,6 @@ return {
         char = '┊',
       },
     },
-  },
-
-  -- "K" to comment visual regions/lines
-  {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end,
   },
 
   {
@@ -110,20 +91,6 @@ return {
         vim.fn['mkdp#util#install']()
       end,
     },
-  },
-  {
-    'windwp/nvim-autopairs',
-    opts = {
-      fast_wrap = {},
-      disable_filetype = { 'TelescopePrompt', 'vim' },
-    },
-    config = function(_, opts)
-      require('nvim-autopairs').setup(opts)
-
-      -- setup cmp for autopairs
-      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-      require('cmp').event:on('confirm_done', cmp_autopairs.on_confirm_done())
-    end,
   },
   -- {
   --   'jay-babu/mason-null-ls.nvim',

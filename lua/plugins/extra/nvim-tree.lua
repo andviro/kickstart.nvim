@@ -4,7 +4,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   keys = {
-    { '<leader><Tab>', '<cmd>NvimTreeToggle<cr>', desc = 'Toggle NvimTree' },
+    { '<leader>t', '<cmd>NvimTreeOpen<cr>', desc = 'Open Nvim[T]ree' },
   },
   config = function()
     local api = require 'nvim-tree.api'
@@ -18,7 +18,7 @@ return {
         -- open file
         api.node.open.edit()
         -- Close the tree if file was opened
-        api.tree.close()
+        -- api.tree.close()
       end
     end
 
@@ -29,6 +29,7 @@ return {
 
       api.config.mappings.default_on_attach(bufnr)
       vim.keymap.set('n', '<CR>', edit_or_open, opts 'Open')
+      vim.keymap.set('n', '<Leader>t', '<CMD>wincmd w<CR>', opts 'Leave')
     end
 
     require('nvim-tree').setup {
@@ -64,15 +65,15 @@ return {
               arrow_closed = '⏵',
               arrow_open = '⏷',
             },
-            git = {
-              unstaged = '✗',
-              staged = '✓',
-              unmerged = '⌥',
-              renamed = '➜',
-              untracked = '★',
-              deleted = '⊖',
-              ignored = '◌',
-            },
+            -- git = {
+            --   unstaged = '✗',
+            --   staged = '✓',
+            --   unmerged = '⌥',
+            --   renamed = '➜',
+            --   untracked = '★',
+            --   deleted = '⊖',
+            --   ignored = '◌',
+            -- },
           },
         },
       },
@@ -82,16 +83,16 @@ return {
         custom = { '^\\.git$', '^\\.env$' },
       },
     }
-    -- local function open_nvim_tree()
-    --   -- open the tree
-    --   api.tree.open()
-    --   vim.cmd 'wincmd w'
-    -- end
+    local function open_nvim_tree()
+      -- open the tree
+      api.tree.open()
+      vim.cmd 'wincmd w'
+    end
     local Event = api.events.Event
     api.events.subscribe(Event.TreeOpen, function()
       api.tree.change_root(require('core.common').get_cwd())
     end)
-    -- vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
+    vim.api.nvim_create_autocmd({ 'VimEnter' }, { callback = open_nvim_tree })
     vim.api.nvim_create_autocmd('QuitPre', {
       callback = function()
         local tree_wins = {}
