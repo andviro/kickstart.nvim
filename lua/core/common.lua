@@ -43,9 +43,9 @@ M.on_attach = function(client, bufnr)
     end
     nmap('<CR>', vim.lsp.buf.definition, 'Go to definition')
     nmap('<C-k>', '<cmd>Telescope diagnostics<cr>', 'Telescope diagnostics')
-    nmap('K', vim.lsp.buf.hover, 'Help')
+    -- nmap('K', vim.lsp.buf.hover, 'Help')
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
@@ -65,17 +65,68 @@ M.on_attach = function(client, bufnr)
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, '[W]orkspace [L]ist Folders')
   end
+  if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+    nmap('<leader>th', function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end, '[T]oggle Inlay [H]ints')
+  end
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+  if client.name == 'gopls' then
+    if not client.server_capabilities.semanticTokensProvider then
+      local semantic = client.config.capabilities.textDocument.semanticTokens
+      client.server_capabilities.semanticTokensProvider = {
+        full = true,
+        legend = {
+          tokenTypes = semantic.tokenTypes,
+          tokenModifiers = semantic.tokenModifiers,
+        },
+        range = true,
+      }
+    end
+  end
 end
 
 -- if you just want default config for the servers then put them in a table
 M.servers = {
   bufls = {},
   gopls = {
-    hints = { enabled = true },
+    gopls = {
+      gofumpt = true,
+      codelenses = {
+        gc_details = false,
+        generate = true,
+        regenerate_cgo = true,
+        run_govulncheck = true,
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
+        vendor = true,
+      },
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+      analyses = {
+        fieldalignment = true,
+        nilness = true,
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
+      },
+      usePlaceholders = true,
+      completeUnimported = true,
+      staticcheck = true,
+      directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
+      semanticTokens = true,
+    },
   },
   pyright = {},
   rust_analyzer = {},

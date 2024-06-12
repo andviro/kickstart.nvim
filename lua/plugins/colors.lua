@@ -18,7 +18,13 @@ return {
     --   config = bar
     --   end,
   },
-  { 'srcery-colors/srcery-vim', name = 'srcery' },
+  {
+    'srcery-colors/srcery-vim',
+    name = 'srcery',
+    config = function()
+      -- vim.cmd 'colorscheme srcery'
+    end,
+  },
   {
     'challenger-deep-theme/vim',
     name = 'challenger-deep',
@@ -104,7 +110,18 @@ return {
     'sainnhe/everforest',
     config = function()
       vim.g.everforest_background = 'hard'
-      vim.cmd 'colorscheme everforest'
+      -- vim.cmd 'colorscheme everforest'
+    end,
+  },
+  {
+    'sainnhe/edge',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      vim.g.edge_enable_italic = true
+      -- vim.cmd.colorscheme 'edge'
     end,
   },
   {
@@ -116,6 +133,7 @@ return {
       'rktjmp/lush.nvim',
     },
     config = function()
+      vim.g.zenbones = { darkness = 'warm' }
       -- vim.cmd 'colorscheme zenbones'
     end,
   },
@@ -131,7 +149,7 @@ return {
   {
     'EdenEast/nightfox.nvim',
     config = function()
-      -- vim.cmd 'colorscheme terafox'
+      -- vim.cmd 'colorscheme nightfox'
     end,
   },
   {
@@ -156,17 +174,19 @@ return {
           }
         end,
       }
-      -- vim.cmd 'colorscheme kanagawa'
+      -- vim.cmd 'colorscheme kanagawa-dragon'
     end,
   },
-  -- {
-  --   'ishan9299/nvim-solarized-lua',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.g.solarized_visibility = 'low'
-  --     -- vim.cmd 'colorscheme solarized'
-  --   end,
-  -- },
+  {
+    'ishan9299/nvim-solarized-lua',
+    priority = 1000,
+    config = function()
+      -- vim.g.solarized_visibility = 'normal'
+      vim.g.solarized_visibility = 'low'
+      vim.cmd 'colorscheme solarized'
+      vim.cmd 'hi link LspInlayHint LineNr'
+    end,
+  },
   {
     'folke/tokyonight.nvim',
     priority = 1000,
@@ -224,24 +244,36 @@ return {
     priority = 1000,
     config = function()
       require('solarized-osaka').setup {
-        transparent = true,
+        transparent = false,
+        styles = {
+          floats = 'transparent',
+          sidebars = 'transparent',
+        },
       }
       -- vim.cmd 'colorscheme solarized-osaka'
     end,
   },
-  {
-    'maxmx03/solarized.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('solarized').setup {
-        theme = 'neo', -- or 'neo'
-        -- palette = 'selenized',
-      }
-      -- vim.o.background = 'dark' -- or 'light'
-      -- vim.cmd.colorscheme 'solarized'
-    end,
-  },
+  -- {
+  --   'maxmx03/solarized.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require('solarized').setup {
+  --       theme = 'neo', -- or 'neo'
+  --       -- palette = 'selenized',
+  --     }
+  --     -- vim.o.background = 'dark' -- or 'light'
+  --     vim.cmd.colorscheme 'solarized'
+  --   end,
+  -- },
+  -- {
+  --   'Tsuzat/NeoSolarized.nvim',
+  --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  --   config = function()
+  --     -- vim.cmd [[ colorscheme NeoSolarized ]]
+  --   end,
+  -- },
   {
     'catppuccin/nvim',
     name = 'catppuccin',

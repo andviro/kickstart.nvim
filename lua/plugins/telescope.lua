@@ -93,7 +93,7 @@ return {
           ignore_current_buffer = true,
           sort_lastused = true,
         },
-        -- find_command = { "fd", "--hidden", "--type", "file", "--follow", "--strip-cwd-prefix" },
+        find_command = { 'fd', '--hidden', '--type', 'file', '--follow', '--strip-cwd-prefix' },
       },
       defaults = {
         file_ignore_patterns = {

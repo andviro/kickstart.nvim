@@ -4,7 +4,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   keys = {
-    { '<leader>t', '<cmd>NvimTreeOpen<cr>', desc = 'Open Nvim[T]ree' },
+    { '<leader><Tab>', '<cmd>NvimTreeOpen<cr>', desc = 'Open Nvim[T]ree' },
   },
   config = function()
     local api = require 'nvim-tree.api'

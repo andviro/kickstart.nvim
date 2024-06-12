@@ -38,6 +38,8 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", expr_options)
 map('n', 'H', '<C-o>', nore_options)
 map('n', 'L', '<C-i>', nore_options)
 
+map('v', 'K', 'gc', { remap = true })
+
 -- mitigate insert-mode hell
 map('i', '<C-u>', '<c-g>u<c-u>', nore_options)
 map('i', '<C-w>', '<c-g>u<c-w>', nore_options)

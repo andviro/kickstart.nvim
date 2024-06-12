@@ -4,14 +4,22 @@ return {
     'ray-x/guihua.lua',
     'neovim/nvim-lspconfig',
     'nvim-treesitter/nvim-treesitter',
-    'hrsh7th/nvim-cmp',
   },
   config = function()
-    local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require('core.common').capabilities
+    local on_attach = require('core.common').on_attach
     require('go').setup {
-      lsp_on_attach = require('core.common').on_attach,
+      lsp_on_attach = on_attach,
       lsp_cfg = {
         capabilities = capabilities,
+      },
+      lsp_codelens = false,
+      lsp_inlay_hints = {
+        enable = true,
+        -- hint style, set to 'eol' for end-of-line hints, 'inlay' for inline hints
+        -- inlay only available for 0.10.x
+        style = 'eol',
+        highlight = 'LspInlayHint',
       },
     }
   end,

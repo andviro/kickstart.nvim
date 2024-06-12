@@ -4,6 +4,7 @@ return {
   event = { 'BufReadPre', 'BufNewFile' }, -- to enable uncomment this
   dependencies = {
     'jay-babu/mason-null-ls.nvim',
+    -- 'ThePrimeagen/refactoring.nvim',
   },
   config = function()
     local present, null_ls = pcall(require, 'null-ls')
@@ -44,13 +45,17 @@ return {
     local sources = {
       -- go
       b.formatting.goimports,
+      b.code_actions.gomodifytags,
+      b.code_actions.impl,
+      -- b.code_actions.refactoring,
+      b.formatting.gofumpt,
       -- b.diagnostics.revive,
-      b.formatting.golines.with {
-        extra_args = {
-          '--max-len=180',
-          '--base-formatter=gofumpt',
-        },
-      },
+      -- b.formatting.golines.with {
+      --   extra_args = {
+      --     '--max-len=180',
+      --     '--base-formatter=gofumpt',
+      --   },
+      -- },
 
       -- webdev stuff
       -- b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!

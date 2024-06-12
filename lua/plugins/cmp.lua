@@ -14,7 +14,7 @@ return {
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'onsails/lspkind.nvim',
   },
-  event = 'InsertEnter *',
+  lazy = false,
   config = function()
     -- Setup nvim-cmp.
     local luasnip = require 'luasnip'

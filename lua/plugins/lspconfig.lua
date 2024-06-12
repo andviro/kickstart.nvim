@@ -8,9 +8,6 @@ return {
     { 'antosha417/nvim-lsp-file-operations', config = true },
     { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
   },
-  opts = {
-    inlay_hints = { enabled = true },
-  },
   config = function()
     require('neodev').setup()
     local lspconfig = require 'lspconfig'

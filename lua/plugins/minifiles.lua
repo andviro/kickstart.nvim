@@ -1,5 +1,8 @@
 return {
   'echasnovski/mini.files',
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
   version = '*',
   keys = {
     { '<Leader><Tab>', '<cmd>lua MiniFiles.open()<cr>', desc = 'Open minifiles' },
