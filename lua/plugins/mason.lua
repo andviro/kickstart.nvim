@@ -31,10 +31,14 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     mason_lspconfig.setup_handlers {
       function(server_name)
+        local settings = cfg.servers[server_name]
+        if server_name == 'bufls' then
+          server_name = 'buf_ls'
+        end
         require('lspconfig')[server_name].setup {
           capabilities = capabilities,
           on_attach = cfg.on_attach,
-          settings = cfg.servers[server_name],
+          settings = settings,
         }
       end,
     }
@@ -74,7 +78,7 @@ return {
         'stylua', -- lua formatter
         'taplo',
         'revive',
-        'typescript-language-server',
+        -- 'typescript-language-server',
         'yaml-language-server',
       },
     }

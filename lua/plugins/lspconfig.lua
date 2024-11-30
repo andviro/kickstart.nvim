@@ -32,6 +32,9 @@ return {
 
     for _, lsp in ipairs(vim.tbl_keys(cfg.servers)) do
       local settings = cfg.servers[lsp]
+      if lsp == 'bufls' then
+        lsp = 'buf_ls'
+      end
       lspconfig[lsp].setup {
         on_attach = cfg.on_attach,
         capabilities = cfg.capabilities,

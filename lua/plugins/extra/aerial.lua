@@ -55,6 +55,6 @@ return {
         },
       },
     }
-    vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
+    -- vim.kmap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
   end,
 }

@@ -130,7 +130,7 @@ M.servers = {
   },
   pyright = {},
   rust_analyzer = {},
-  tsserver = {},
+  -- ts_ls = {},
   html = {},
   lua_ls = {
     Lua = {

@@ -1,4 +1,84 @@
 return {
+  {
+    '2giosangmitom/nightfall.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      require('nightfall').setup {
+        compile_path = vim.fn.stdpath 'cache' .. '/nightfall',
+        transparent = false,
+        terminal_colors = true,
+        dim_inactive = false,
+        styles = {
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = {},
+          variables = {},
+          numbers = {},
+          conditionals = {},
+          constants = {},
+          operators = {},
+          strings = {},
+          types = {},
+          booleans = {},
+          loops = {},
+        },
+        default_integrations = true,
+        integrations = {
+          lazy = { enabled = true },
+          telescope = { enabled = true, style = 'borderless' },
+          illuminate = { enabled = true },
+          treesitter = { enabled = true, context = true },
+          lspconfig = { enabled = true },
+          flash = { enabled = false },
+        },
+      }
+      -- vim.cmd 'colorscheme nightfall'
+    end,
+  },
+  {
+    'sho-87/kanagawa-paper.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      -- vim.cmd 'colorscheme kanagawa-paper'
+    end,
+  },
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine',
+    config = function()
+      -- vim.cmd 'colorscheme rose-pine'
+    end,
+  },
+  {
+    'dgox16/oldworld.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      -- vim.cmd 'colorscheme oldworld'
+    end,
+  },
+  {
+    '0xstepit/flow.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      require('flow').setup {
+        dark_theme = true, -- Set the theme with dark background.
+        high_contrast = false, -- Make the dark background darker or the light background lighter.
+        transparent = false, -- Set transparent background.
+        fluo_color = 'pink', -- Color used as fluo. Available values are pink, yellow, orange, or green.
+        mode = 'base', -- Mode of the colors. Available values are: dark, bright, desaturate, or base.
+        aggressive_spell = false, -- Use colors for spell check.
+      }
+      -- vim.cmd 'colorscheme flow'
+    end,
+  },
   -- {
   --   'phha/zenburn.nvim',
   --   config = function()
@@ -9,6 +89,13 @@ return {
     'savq/melange-nvim',
     config = function()
       -- vim.cmd 'colorscheme melange'
+    end,
+  },
+  {
+    'p00f/alabaster.nvim',
+    config = function()
+      vim.g.alabaster_dim_comments = true
+      -- vim.cmd 'colorscheme alabaster'
     end,
   },
   {
@@ -48,7 +135,9 @@ return {
     'ramojus/mellifluous.nvim',
     -- version = "v0.*", -- uncomment for stable config (some features might be missed if/when v1 comes out)
     config = function()
-      require('mellifluous').setup {} -- optional, see configuration section.
+      require('mellifluous').setup {
+        colorset = 'kanagawa_dragon',
+      } -- optional, see configuration section.
       -- vim.cmd 'colorscheme mellifluous'
     end,
   },
@@ -134,6 +223,7 @@ return {
     },
     config = function()
       vim.g.zenbones = { darkness = 'warm' }
+      -- vim.cmd 'colorscheme rosebones'
       -- vim.cmd 'colorscheme zenbones'
     end,
   },
@@ -175,6 +265,17 @@ return {
         end,
       }
       -- vim.cmd 'colorscheme kanagawa-dragon'
+      -- vim.cmd 'hi link LspInlayHint LineNr'
+      -- vim.cmd 'hi WinBar ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE cterm=bold gui=bold'
+      -- vim.cmd 'hi WinBarNC ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE cterm=bold gui=bold'
+    end,
+  },
+  {
+    'calind/selenized.nvim',
+    priority = 1000,
+    config = function()
+      -- vim.cmd 'colorscheme selenized'
+      vim.cmd 'hi link NonText WinSeparator'
     end,
   },
   {
@@ -185,8 +286,43 @@ return {
       vim.g.solarized_visibility = 'low'
       vim.cmd 'colorscheme solarized'
       vim.cmd 'hi link LspInlayHint LineNr'
+      vim.cmd 'hi WinBar ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE cterm=bold gui=bold'
+      vim.cmd 'hi WinBarNC ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE cterm=bold gui=bold'
     end,
   },
+  {
+    'ribru17/bamboo.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('bamboo').setup {
+        -- optional configuration here
+      }
+      -- require('bamboo').load()
+    end,
+  },
+  {
+    'rockyzhang24/arctic.nvim',
+    branch = 'v2',
+    dependencies = { 'rktjmp/lush.nvim' },
+    config = function()
+      -- vim.cmd.colorscheme 'arctic'
+    end,
+  },
+  -- {
+  --   'maxmx03/solarized.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   ---@type solarized.config
+  --   opts = {
+  --     variant = 'spring',
+  --     palette = 'selenized',
+  --   },
+  --   config = function(_, opts)
+  --     require('solarized').setup(opts)
+  --     vim.cmd.colorscheme 'solarized'
+  --   end,
+  -- },
   {
     'folke/tokyonight.nvim',
     priority = 1000,
@@ -251,21 +387,11 @@ return {
         },
       }
       -- vim.cmd 'colorscheme solarized-osaka'
+      vim.cmd 'hi link LspInlayHint LineNr'
+      vim.cmd 'hi WinBar ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE cterm=bold gui=bold'
+      vim.cmd 'hi WinBarNC ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE cterm=bold gui=bold'
     end,
   },
-  -- {
-  --   'maxmx03/solarized.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require('solarized').setup {
-  --       theme = 'neo', -- or 'neo'
-  --       -- palette = 'selenized',
-  --     }
-  --     -- vim.o.background = 'dark' -- or 'light'
-  --     vim.cmd.colorscheme 'solarized'
-  --   end,
-  -- },
   -- {
   --   'Tsuzat/NeoSolarized.nvim',
   --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
