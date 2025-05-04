@@ -22,14 +22,14 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   keys = {
     {
-      '<C-m>',
+      '<leader>m',
       function()
         require('harpoon'):list():add()
       end,
       desc = 'Harpoon append',
     },
     {
-      "<C-'>",
+      '<C-j>',
       function()
         toggle_telescope(require('harpoon'):list())
       end,

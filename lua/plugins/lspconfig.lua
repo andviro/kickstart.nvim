@@ -29,12 +29,23 @@ return {
       -- Fallback to system Python.
       return vim.fn.exepath 'python3' or vim.fn.exepath 'python' or 'python'
     end
-
+    lspconfig.util.on_setup = lspconfig.util.add_hook_before(lspconfig.util.on_setup, function(config)
+      if config.name == 'golangci_lint_ls' then
+        config.filetypes = { 'go', 'gomod' }
+        config.init_options = {
+          command = {
+            'golangci-lint',
+            'run',
+            '--output.json.path',
+            'stdout',
+            '--show-stats=false',
+            '--issues-exit-code=1',
+          },
+        }
+      end
+    end)
     for _, lsp in ipairs(vim.tbl_keys(cfg.servers)) do
       local settings = cfg.servers[lsp]
-      if lsp == 'bufls' then
-        lsp = 'buf_ls'
-      end
       lspconfig[lsp].setup {
         on_attach = cfg.on_attach,
         capabilities = cfg.capabilities,

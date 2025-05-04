@@ -63,6 +63,8 @@ return {
         'gofumpt',
         'goimports',
         'gopls',
+        'golangci-lint',
+        'golangci-lint-langserver',
         'html-lsp',
         'isort',
         'isort', -- python formatter

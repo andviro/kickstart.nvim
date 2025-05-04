@@ -49,6 +49,7 @@ return {
       b.code_actions.impl,
       -- b.code_actions.refactoring,
       b.formatting.gofumpt,
+      -- b.diagnostics.golangci_lint,
       -- b.diagnostics.revive,
       -- b.formatting.golines.with {
       --   extra_args = {

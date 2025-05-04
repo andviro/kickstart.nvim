@@ -4,6 +4,11 @@ local fn = vim.fn
 
 vim.cmd 'set inccommand=split'
 vim.cmd 'filetype on'
+vim.filetype.add {
+  pattern = {
+    ['.*/templates/.*%.yaml'] = 'helm',
+  },
+}
 o.termsync = true
 o.guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50' -- block in normal and beam cursor in insert mode
 o.updatetime = 300 -- faster completion
@@ -38,7 +43,8 @@ o.autoindent = true
 o.formatoptions = 'jcroql'
 o.autowrite = true
 o.hidden = true
-o.sessionoptions:remove 'options'
+-- o.sessionoptions:remove 'options'
+o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 o.smartcase = true -- smart case
 o.ignorecase = true -- ignore case
 o.smartindent = true -- make indenting smarter again
@@ -84,6 +90,9 @@ o.wildignore = [[
 *.swp,.lock,.DS_Store,._*
 */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
 ]]
+vim.opt.exrc = true
+vim.opt.secure = true
+vim.opt.switchbuf = 'usetab'
 
 -- vim.g.VM_maps = {}
 -- vim.g.VM_maps['Select All'] = '<M-n>'

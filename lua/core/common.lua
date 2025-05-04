@@ -5,9 +5,9 @@ M.get_cwd = function()
   if vim.v.shell_error ~= 0 then
     -- if not git then active lsp client root
     -- will get the configured root directory of the first attached lsp. You will have problems if you are using multiple lsps
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      cwd = client.config.root_dir
+    local clients = vim.lsp.get_clients()
+    if clients then
+      cwd = clients[1].config.root_dir
     else
       cwd = vim.fn.expand '%:p:h'
     end
@@ -37,12 +37,14 @@ M.on_attach = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     -- local navic = require 'nvim-navic'
     -- navic.attach(client, bufnr)
-    local ok, outline = pcall(require, 'outline')
-    if ok then
-      outline.open { focus_outline = false }
-    end
+    -- local ok, outline = pcall(require, 'outline')
+    -- if ok then
+    --   outline.open { focus_outline = false }
+    -- end
     nmap('<CR>', vim.lsp.buf.definition, 'Go to definition')
     nmap('<C-k>', '<cmd>Telescope diagnostics<cr>', 'Telescope diagnostics')
+    nmap('<leader>>', '<cmd>Lspsaga diagnostic_jump_next<CR>', 'Lspsaga diagnostics next')
+    nmap('<leader><', '<cmd>Lspsaga diagnostic_jump_prev<CR>', 'Lspsaga diagnostics prev')
     -- nmap('K', vim.lsp.buf.hover, 'Help')
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
@@ -55,7 +57,8 @@ M.on_attach = function(client, bufnr)
     -- nmap('<leader><CR>', vim.lsp.buf.references, '[CR] symbol references')
 
     -- See `:help K` for why this keymap
-    nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+    -- nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+    nmap('K', '<cmd>Lspsaga hover_doc<CR>')
     nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
     -- Lesser used LSP functionality
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -66,6 +69,7 @@ M.on_attach = function(client, bufnr)
     end, '[W]orkspace [L]ist Folders')
   end
   if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     nmap('<leader>th', function()
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end, '[T]oggle Inlay [H]ints')
@@ -91,7 +95,12 @@ end
 
 -- if you just want default config for the servers then put them in a table
 M.servers = {
-  bufls = {},
+  buf_ls = {},
+  golangci_lint_ls = {
+    golangci_lint_ls = {
+      filetypes = { 'go', 'gomod' },
+    },
+  },
   gopls = {
     gopls = {
       gofumpt = true,
@@ -106,16 +115,16 @@ M.servers = {
         vendor = true,
       },
       hints = {
-        assignVariableTypes = true,
+        -- assignVariableTypes = true,
         compositeLiteralFields = true,
-        compositeLiteralTypes = true,
+        -- compositeLiteralTypes = true,
         constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
+        -- functionTypeParameters = true,
+        -- parameterNames = true,
+        -- rangeVariableTypes = true,
       },
       analyses = {
-        fieldalignment = true,
+        -- fieldalignment = true,
         nilness = true,
         unusedparams = true,
         unusedwrite = true,
@@ -126,6 +135,11 @@ M.servers = {
       staticcheck = true,
       directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
       semanticTokens = true,
+    },
+  },
+  helm_ls = {
+    yamlls = {
+      path = 'yaml-language-server',
     },
   },
   pyright = {},

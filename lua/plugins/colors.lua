@@ -1,43 +1,5 @@
 return {
   {
-    '2giosangmitom/nightfall.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    config = function()
-      require('nightfall').setup {
-        compile_path = vim.fn.stdpath 'cache' .. '/nightfall',
-        transparent = false,
-        terminal_colors = true,
-        dim_inactive = false,
-        styles = {
-          comments = { italic = true },
-          keywords = { italic = true },
-          functions = {},
-          variables = {},
-          numbers = {},
-          conditionals = {},
-          constants = {},
-          operators = {},
-          strings = {},
-          types = {},
-          booleans = {},
-          loops = {},
-        },
-        default_integrations = true,
-        integrations = {
-          lazy = { enabled = true },
-          telescope = { enabled = true, style = 'borderless' },
-          illuminate = { enabled = true },
-          treesitter = { enabled = true, context = true },
-          lspconfig = { enabled = true },
-          flash = { enabled = false },
-        },
-      }
-      -- vim.cmd 'colorscheme nightfall'
-    end,
-  },
-  {
     'sho-87/kanagawa-paper.nvim',
     lazy = false,
     priority = 1000,
@@ -73,37 +35,11 @@ return {
         high_contrast = false, -- Make the dark background darker or the light background lighter.
         transparent = false, -- Set transparent background.
         fluo_color = 'pink', -- Color used as fluo. Available values are pink, yellow, orange, or green.
-        mode = 'base', -- Mode of the colors. Available values are: dark, bright, desaturate, or base.
+        mode = 'desaturate', -- Mode of the colors. Available values are: dark, bright, desaturate, or base.
         aggressive_spell = false, -- Use colors for spell check.
       }
       -- vim.cmd 'colorscheme flow'
     end,
-  },
-  -- {
-  --   'phha/zenburn.nvim',
-  --   config = function()
-  --     require('zenburn').setup()
-  --   end,
-  -- },
-  {
-    'savq/melange-nvim',
-    config = function()
-      -- vim.cmd 'colorscheme melange'
-    end,
-  },
-  {
-    'p00f/alabaster.nvim',
-    config = function()
-      vim.g.alabaster_dim_comments = true
-      -- vim.cmd 'colorscheme alabaster'
-    end,
-  },
-  {
-    'nyoom-engineering/oxocarbon.nvim',
-    -- Add in any other configuration;
-    --   event = foo,
-    --   config = bar
-    --   end,
   },
   {
     'srcery-colors/srcery-vim',
@@ -111,25 +47,6 @@ return {
     config = function()
       -- vim.cmd 'colorscheme srcery'
     end,
-  },
-  {
-    'challenger-deep-theme/vim',
-    name = 'challenger-deep',
-    config = function()
-      -- vim.cmd 'colorscheme challenger_deep'
-    end,
-  },
-  {
-    'jacoborus/tender.vim',
-    config = function()
-      -- vim.cmd 'colorscheme tender'
-    end,
-  },
-  {
-    'pauchiner/pastelnight.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
   },
   {
     'ramojus/mellifluous.nvim',
@@ -144,52 +61,10 @@ return {
   { 'kepano/flexoki-neovim', name = 'flexoki' },
   { 'bluz71/vim-nightfly-colors', name = 'nightfly', lazy = false, priority = 1000 },
   {
-    'olivercederborg/poimandres.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require('poimandres').setup {
-        -- leave this setup function empty for default config
-        -- or refer to the configuration section
-        -- for configuration options
-      }
-    end,
-
-    -- optionally set the colorscheme within lazy config
-    init = function()
-      -- vim.cmd 'colorscheme poimandres'
-    end,
-  },
-  {
     'olimorris/onedarkpro.nvim',
     priority = 1000, -- Ensure it loads first
     config = function()
       -- vim.cmd [[colorscheme onedark]]
-    end,
-  },
-  {
-    'dasupradyumna/midnight.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd [[colorscheme midnight]]
-    end,
-  },
-  {
-    'tinted-theming/base16-vim',
-  },
-  {
-    'kvrohit/rasmus.nvim',
-    config = function()
-      -- Configure the appearance
-      vim.g.rasmus_italic_functions = true
-      vim.g.rasmus_bold_functions = true
-
-      -- Set the colorscheme variant to monochrome
-      -- vim.g.rasmus_variant = 'monochrome'
-
-      -- Load the colorscheme
-      -- vim.cmd [[colorscheme rasmus]]
     end,
   },
   {
@@ -225,7 +100,19 @@ return {
       vim.g.zenbones = { darkness = 'warm' }
       -- vim.cmd 'colorscheme rosebones'
       -- vim.cmd 'colorscheme zenbones'
+      -- vim.cmd 'colorscheme zenwritten'
     end,
+  },
+  {
+    'kyazdani42/blue-moon',
+    config = function()
+      -- vim.opt.termguicolors = true
+      -- vim.cmd 'colorscheme blue-moon'
+    end,
+  },
+  {
+    'pbrisbin/vim-colors-off',
+    name = 'off',
   },
   {
     'pappasam/papercolor-theme-slim',
@@ -296,6 +183,7 @@ return {
     priority = 1000,
     config = function()
       require('bamboo').setup {
+        style = 'multiplex',
         -- optional configuration here
       }
       -- require('bamboo').load()
@@ -380,11 +268,15 @@ return {
     priority = 1000,
     config = function()
       require('solarized-osaka').setup {
+        style = 'storm',
         transparent = false,
         styles = {
           floats = 'transparent',
           sidebars = 'transparent',
         },
+        on_colors = function(colors)
+          colors.bg = '#001a1d'
+        end,
       }
       -- vim.cmd 'colorscheme solarized-osaka'
       vim.cmd 'hi link LspInlayHint LineNr'
