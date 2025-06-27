@@ -34,6 +34,8 @@ M.on_attach = function(client, bufnr)
   --   vim.api.nvim_feedkeys(esc, 'nx', false)
   --   api.toggle.linewise(vim.fn.visualmode())
   -- end)
+  nmap('<CR>', vim.lsp.buf.definition, 'Go to definition')
+  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   if client.server_capabilities.documentSymbolProvider then
     -- local navic = require 'nvim-navic'
     -- navic.attach(client, bufnr)
@@ -41,14 +43,13 @@ M.on_attach = function(client, bufnr)
     -- if ok then
     --   outline.open { focus_outline = false }
     -- end
-    nmap('<CR>', vim.lsp.buf.definition, 'Go to definition')
     nmap('<C-k>', '<cmd>Telescope diagnostics<cr>', 'Telescope diagnostics')
-    nmap('<leader>>', '<cmd>Lspsaga diagnostic_jump_next<CR>', 'Lspsaga diagnostics next')
-    nmap('<leader><', '<cmd>Lspsaga diagnostic_jump_prev<CR>', 'Lspsaga diagnostics prev')
+    -- nmap('<leader>>', '<cmd>Lspsaga diagnostic_jump_next<CR>', 'Lspsaga diagnostics next')
+    -- nmap('<leader><', '<cmd>Lspsaga diagnostic_jump_prev<CR>', 'Lspsaga diagnostics prev')
     -- nmap('K', vim.lsp.buf.hover, 'Help')
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
@@ -57,8 +58,7 @@ M.on_attach = function(client, bufnr)
     -- nmap('<leader><CR>', vim.lsp.buf.references, '[CR] symbol references')
 
     -- See `:help K` for why this keymap
-    -- nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap('K', '<cmd>Lspsaga hover_doc<CR>')
+    -- nmap('K', '<cmd>Lspsaga hover_doc<CR>')
     nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
     -- Lesser used LSP functionality
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -96,11 +96,11 @@ end
 -- if you just want default config for the servers then put them in a table
 M.servers = {
   buf_ls = {},
-  golangci_lint_ls = {
-    golangci_lint_ls = {
-      filetypes = { 'go', 'gomod' },
-    },
-  },
+  -- golangci_lint_ls = {
+  --   golangci_lint_ls = {
+  --     filetypes = { 'go', 'gomod' },
+  --   },
+  -- },
   gopls = {
     gopls = {
       gofumpt = true,
@@ -116,7 +116,7 @@ M.servers = {
       },
       hints = {
         -- assignVariableTypes = true,
-        compositeLiteralFields = true,
+        -- compositeLiteralFields = true,
         -- compositeLiteralTypes = true,
         constantValues = true,
         -- functionTypeParameters = true,
@@ -135,6 +135,7 @@ M.servers = {
       staticcheck = true,
       directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
       semanticTokens = true,
+      buildFlags = { '-tags=wireinject' },
     },
   },
   helm_ls = {

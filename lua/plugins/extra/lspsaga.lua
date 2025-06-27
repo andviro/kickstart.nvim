@@ -2,9 +2,9 @@ return {
   'nvimdev/lspsaga.nvim',
   event = { 'LspAttach' },
   keys = {
-    { '<Leader><CR>', '<cmd>Lspsaga finder imp+ref<CR>', desc = 'Symbol references' },
+    { '<Leader><CR>', '<cmd>Lspsaga finder<CR>', desc = 'Symbol references' },
     { '<Leader>a', '<cmd>Lspsaga code_action<CR>', desc = 'Code [A]ctions' },
-    { '<Leader>q', '<cmd>Lspsaga show_workspace_diagnostics<CR>', desc = 'workspace diagnosti[q]s' },
+    -- { '<Leader>q', '<cmd>Lspsaga show_workspace_diagnostics<CR>', desc = 'workspace diagnosti[q]s' },
   },
   config = function()
     require('lspsaga').setup {

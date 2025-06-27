@@ -2,11 +2,11 @@
 return {
   'williamboman/mason.nvim',
   dependencies = {
-    'williamboman/mason-lspconfig.nvim',
+    -- 'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
   },
   config = function()
-    local mason_lspconfig = require 'mason-lspconfig'
+    -- local mason_lspconfig = require 'mason-lspconfig'
     local mason_tool_installer = require 'mason-tool-installer'
 
     local cfg = require 'core.common'
@@ -23,33 +23,37 @@ return {
       },
     }
 
-    mason_lspconfig.setup {
-      ensure_installed = vim.tbl_keys(cfg.servers),
-      max_concurrent_installers = 10,
-    }
+    -- mason_lspconfig.setup {
+    --   ensure_installed = vim.tbl_keys(cfg.servers),
+    --   automatic_enable = {
+    --     exclude = { 'gopls' },
+    --   },
+    --   max_concurrent_installers = 10,
+    -- }
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    mason_lspconfig.setup_handlers {
-      function(server_name)
-        local settings = cfg.servers[server_name]
-        if server_name == 'bufls' then
-          server_name = 'buf_ls'
-        end
-        require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
-          on_attach = cfg.on_attach,
-          settings = settings,
-        }
-      end,
-    }
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- mason_lspconfig.setup_handlers {
+    --   function(server_name)
+    --     local settings = cfg.servers[server_name]
+    --     if server_name == 'bufls' then
+    --       server_name = 'buf_ls'
+    --     end
+    --     require('lspconfig')[server_name].setup {
+    --       capabilities = capabilities,
+    --       on_attach = cfg.on_attach,
+    --       settings = settings,
+    --     }
+    --   end,
+    -- }
 
     mason_tool_installer.setup {
+      automatic_enable = {
+        exclude = { 'gopls' },
+      },
       ensure_installed = {
         'bash-language-server',
         'black',
-        'black', -- python formatter
-        'buf-language-server', -- protobuf linter
-        'buf', -- protobuf linter
+        'buf',
         'clangd',
         'clang-format',
         'css-lsp',
