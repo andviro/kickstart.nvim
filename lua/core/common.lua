@@ -16,7 +16,8 @@ M.get_cwd = function()
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-M.capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- M.capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+M.capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
 -- local api = require 'Comment.api'
 -- local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
@@ -43,14 +44,14 @@ M.on_attach = function(client, bufnr)
     -- if ok then
     --   outline.open { focus_outline = false }
     -- end
-    nmap('<C-k>', '<cmd>Telescope diagnostics<cr>', 'Telescope diagnostics')
+    -- nmap('<C-k>', '<cmd>Telescope diagnostics<cr>', 'Telescope diagnostics')
     -- nmap('<leader>>', '<cmd>Lspsaga diagnostic_jump_next<CR>', 'Lspsaga diagnostics next')
     -- nmap('<leader><', '<cmd>Lspsaga diagnostic_jump_prev<CR>', 'Lspsaga diagnostics prev')
     -- nmap('K', vim.lsp.buf.hover, 'Help')
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+    -- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
     --nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')

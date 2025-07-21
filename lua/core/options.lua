@@ -9,6 +9,25 @@ vim.filetype.add {
     ['.*/templates/.*%.yaml'] = 'helm',
   },
 }
+local function escape(str)
+  -- You need to escape these characters to work correctly
+  local escape_chars = [[;,."|\]]
+  return vim.fn.escape(str, escape_chars)
+end
+
+-- Recommended to use lua template string
+local en = [[`qwertyuiop[]\asdfghjklzxcvbnm=]]
+local ru = [[юявертыуиопшщэасдфгхйклзьцжбнмч]]
+local en_shift = [[~QWERTYUIOP{}|ASDFGHJKLZXCVBNM+]]
+local ru_shift = [[ЮЯВЕРТЫУИОПШЩЭАСДФГХЙКЛЗЬЦЖБНМЧ]]
+
+vim.opt.langmap = vim.fn.join({
+  -- | `to` should be first     | `from` should be second
+  escape(ru_shift)
+    .. ';'
+    .. escape(en_shift),
+  escape(ru) .. ';' .. escape(en),
+}, ',')
 o.termsync = true
 o.guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50' -- block in normal and beam cursor in insert mode
 o.updatetime = 300 -- faster completion

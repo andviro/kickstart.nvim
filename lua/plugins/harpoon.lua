@@ -1,21 +1,21 @@
-local conf = require('telescope.config').values
-local function toggle_telescope(harpoon_files)
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require('telescope.pickers')
-    .new({}, {
-      prompt_title = 'Harpoon',
-      finder = require('telescope.finders').new_table {
-        results = file_paths,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-    })
-    :find()
-end
+-- local conf = require('telescope.config').values
+-- local function toggle_telescope(harpoon_files)
+--   local file_paths = {}
+--   for _, item in ipairs(harpoon_files.items) do
+--     table.insert(file_paths, item.value)
+--   end
+--
+--   require('telescope.pickers')
+--     .new({}, {
+--       prompt_title = 'Harpoon',
+--       finder = require('telescope.finders').new_table {
+--         results = file_paths,
+--       },
+--       previewer = conf.file_previewer {},
+--       sorter = conf.generic_sorter {},
+--     })
+--     :find()
+-- end
 return {
   'ThePrimeagen/harpoon',
   branch = 'harpoon2',
@@ -29,9 +29,14 @@ return {
       desc = 'Harpoon append',
     },
     {
-      '<C-j>',
+      '<leader>j',
       function()
-        toggle_telescope(require('harpoon'):list())
+        local harpoon = require 'harpoon'
+        local fzf_lua = require 'fzf-lua'
+        fzf_lua.register_ui_select()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+        -- toggle_telescope(require('harpoon'):list())
+        fzf_lua.deregister_ui_select()
       end,
       desc = 'Op[e]n harpoon window',
     },
