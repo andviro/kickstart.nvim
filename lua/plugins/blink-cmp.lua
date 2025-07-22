@@ -1,7 +1,11 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+    { 'samiulsami/cmp-go-deep', dependencies = { 'kkharji/sqlite.lua' } },
+    'saghen/blink.compat',
+    'rafamadriz/friendly-snippets',
+  },
 
   -- use a release tag to download pre-built binaries
   version = '1.*',
@@ -42,14 +46,37 @@ return {
 
     -- (Default) Only show the documentation popup when manually triggered
     completion = {
+      menu = {
+        draw = {
+          treesitter = { 'lsp' },
+        },
+      },
       documentation = { auto_show = false },
       ghost_text = { enabled = true },
+      list = {
+        selection = {
+          preselect = true,
+          auto_insert = true,
+        },
+      },
     },
-
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'go_deep', 'lsp', 'path', 'snippets', 'buffer' },
+      providers = {
+        go_deep = {
+          name = 'go_deep',
+          module = 'blink.compat.source',
+          min_keyword_length = 3,
+          max_items = 5,
+          ---@module "cmp_go_deep"
+          ---@type cmp_go_deep.Options
+          opts = {
+            -- See below for configuration options
+          },
+        },
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
