@@ -57,7 +57,9 @@ return {
       ['<Down>'] = { 'select_next', 'fallback' },
       ['<C-k>'] = { 'select_prev', 'fallback' },
       ['<C-j>'] = { 'select_next', 'fallback' },
-      ['<C-l>'] = { 'accept', 'snippet_forward', 'fallback' },
+      ['<C-l>'] = { 'snippet_forward', 'accept', 'fallback' },
+      ['<C-h>'] = { 'snippet_backward', 'fallback' },
+      ['<CR>'] = { 'accept', 'fallback' },
     },
 
     appearance = {
