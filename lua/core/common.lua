@@ -17,7 +17,8 @@ end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- M.capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-M.capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+-- M.capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+M.capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities({}, false))
 
 -- local api = require 'Comment.api'
 -- local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)

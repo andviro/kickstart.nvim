@@ -4,12 +4,13 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     -- 'hrsh7th/cmp-nvim-lsp',
-    'folke/neodev.nvim',
-    { 'antosha417/nvim-lsp-file-operations', config = true },
+    'saghen/blink.cmp',
+    -- 'folke/neodev.nvim',
+    -- { 'antosha417/nvim-lsp-file-operations', config = true },
     { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
   },
   config = function()
-    require('neodev').setup()
+    -- require('neodev').setup()
     local lspconfig = require 'lspconfig'
     local cfg = require 'core.common'
     local util = require 'lspconfig/util'
@@ -48,7 +49,7 @@ return {
       local settings = cfg.servers[lsp]
       lspconfig[lsp].setup {
         on_attach = cfg.on_attach,
-        capabilities = cfg.capabilities,
+        capabilities = require('blink.cmp').get_lsp_capabilities(cfg.capabilities),
         settings = settings,
         before_init = function(_, config)
           if lsp == 'pyright' then
